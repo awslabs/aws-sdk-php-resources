@@ -1,5 +1,9 @@
 # AWS Resource APIs for PHP
 
+[![@awsforphp on Twitter](http://img.shields.io/badge/twitter-%40awsforphp-blue.svg?style=flat)](https://twitter.com/awsforphp)
+[![Build Status](https://img.shields.io/travis/awslabs/aws-sdk-php-resources.svg?style=flat)](https://travis-ci.org/awslabs/aws-sdk-php-resources)
+[![Apache 2 License](https://img.shields.io/packagist/l/aws/aws-sdk-php.svg?style=flat)](http://aws.amazon.com/apache-2-0/)
+
 An extension to the [AWS SDK for PHP] for interacting with AWS services using
 resource-oriented objects.
 

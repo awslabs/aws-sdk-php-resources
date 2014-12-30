@@ -17,7 +17,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(3, $collection->getBatches());
         $this->assertCount(2, $collection->getBatches(7));
 
-        $batches = iterator_to_array($collection->getBatches(20));
+        $batches = iterator_to_array($collection->getBatches(20), false);
         $this->assertCount(1, $batches);
         $this->assertInstanceOf('Aws\Resource\Batch', $batches[0]);
     }

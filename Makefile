@@ -7,6 +7,9 @@ test:
 spec:
 	vendor/bin/phpunit --testdox --testsuite=unit $(TEST)
 
+travis:
+	vendor/bin/phpunit --colors --testsuite=unit --coverage-text
+
 coverage:
 	vendor/bin/phpunit --testsuite=unit --coverage-html=build/artifacts/coverage $(TEST)
 

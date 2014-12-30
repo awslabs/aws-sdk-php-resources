@@ -1,0 +1,30 @@
+{
+    "name": "aws/aws-sdk-php-resources",
+    "homepage": "http://aws.amazon.com/sdkforphp",
+    "description": "A resource-oriented API for interacting with AWS services",
+    "keywords": ["aws","amazon","sdk","s3","ec2","dynamodb","cloud","glacier"],
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Amazon Web Services",
+            "homepage": "http://aws.amazon.com"
+        }
+    ],
+    "support": {
+        "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
+        "issues": "https://github.com/aws/aws-sdk-php-resources/issues"
+    },
+    "require": {
+        "php": ">=5.4",
+        "aws/aws-sdk-php": "~3.0@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aws\\Resource\\": "src/"
+        }
+    }
+}

@@ -5,6 +5,8 @@ namespace Aws\Resource;
 use Aws\Sdk;
 
 /**
+ * Service locator and starting point of the AWS Resource APIs.
+ *
  * @method Resource cloudformation(array $args = [])
  * @property Resource $cloudformation
  * @method Resource ec2(array $args = [])
@@ -97,6 +99,13 @@ class Aws
         return $this->services[$name];
     }
 
+    /**
+     * @param string $service
+     * @param string $version
+     *
+     * @return Model
+     * @throws \RuntimeException
+     */
     private function loadModel($service, $version)
     {
         $path = __DIR__ . "/models/{$service}-{$version}.resources.php";
@@ -107,5 +116,10 @@ class Aws
         }
 
         return new Model($service, include $path);
+    }
+
+    public function __toString()
+    {
+        return "Resource <AWS> [ ]";
     }
 }

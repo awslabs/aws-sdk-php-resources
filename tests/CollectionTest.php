@@ -3,6 +3,8 @@ namespace Aws\Resource\Test;
 
 use Aws\Resource\Batch;
 use Aws\Resource\Collection;
+use Aws\Resource\ResourceClient;
+use Aws\Resource\Resource;
 
 /**
  * @covers Aws\Resource\Collection
@@ -34,14 +36,14 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     private function createCollection($type, $n, $m)
     {
-        $rc = $this->getMockBuilder('Aws\\Resource\\ResourceClient')
+        $rc = $this->getMockBuilder(ResourceClient::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $fn = function ($whoCares) use ($rc, $type, $m) {
             $resources = [];
             for ($i = 0; $i < $m; $i++) {
-                $resources[$i] = $this->getMockBuilder('Aws\\Resource\\Resource')
+                $resources[$i] = $this->getMockBuilder(Resource::class)
                     ->disableOriginalConstructor()
                     ->getMock();
             }

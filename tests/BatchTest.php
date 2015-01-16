@@ -2,6 +2,8 @@
 namespace Aws\Resource\Test;
 
 use Aws\Resource\Batch;
+use Aws\Resource\ResourceClient;
+use Aws\Resource\Resource;
 
 /**
  * @covers Aws\Resource\Batch
@@ -34,10 +36,10 @@ class BatchTest extends \PHPUnit_Framework_TestCase
 
     private function createBatch($type, $size, &$resources = null)
     {
-        $rc = $this->getMockBuilder('Aws\\Resource\\ResourceClient')
+        $rc = $this->getMockBuilder(ResourceClient::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $resource = $this->getMockBuilder('Aws\\Resource\\Resource')
+        $resource = $this->getMockBuilder(Resource::class)
             ->disableOriginalConstructor()
             ->getMock();
 

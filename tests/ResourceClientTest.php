@@ -1,6 +1,7 @@
 <?php
 namespace Aws\Resource\Test;
 
+use Aws\AwsClientInterface;
 use Aws\Result;
 use Aws\Resource\Model;
 use Aws\Resource\Resource;
@@ -16,7 +17,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
 
     public function testInstantiatingClientAndGettersWork()
     {
-        $apiClient = $this->getMock('Aws\\AwsClientInterface');
+        $apiClient = $this->getMock(AwsClientInterface::class);
         $model = new Model('s3', ['service' => [], 'resources' => []]);
 
         $resourceClient = new ResourceClient($apiClient, $model);
@@ -190,7 +191,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
 
         // Perform action that returns resource.
         $bucket = $rc->performAction('CreateBucket', [['Bucket' => 'foo']], $s3);
-        $this->assertInstanceOf('Aws\Resource\Resource', $bucket);
+        $this->assertInstanceOf(Resource::class, $bucket);
         $this->assertEquals('Bucket', $bucket->getType());
         $this->assertEquals(['Name' => 'foo'], $bucket->getIdentity());
 

@@ -6,7 +6,7 @@ use GuzzleHttp\ToArrayInterface;
 
 class Batch implements ToArrayInterface, \Countable, \Iterator
 {
-    use ResourceTrait;
+    use HasTypeTrait;
 
     private $resources;
     private $index = 0;

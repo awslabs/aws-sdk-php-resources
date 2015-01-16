@@ -10,7 +10,7 @@ use Aws\AwsClientInterface;
  *
  * @internal
  */
-trait ResourceTrait
+trait HasTypeTrait
 {
     /** @var ResourceClient */
     private $client;

@@ -1,7 +1,9 @@
 <?php
 namespace Aws\Resource\Test;
 
+use Aws\AwsClientInterface;
 use Aws\Resource\Resource;
+use Aws\Resource\ResourceClient;
 
 /**
  * @covers Aws\Resource\Resource
@@ -30,10 +32,10 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
 
         // Test getClient()
         $client = $bucket->getClient();
-        $this->assertInstanceOf('Aws\\AwsClientInterface', $client);
+        $this->assertInstanceOf(AwsClientInterface::class, $client);
 
         // Test __toString()
-        $this->assertEquals('Resource <S3.Bucket> [ Name => foo ]', $bucket);
+        $this->assertEquals('Resource <AWS.S3.Bucket> [ Name => foo ]', $bucket);
 
         // Test __debugInfo() and getMeta()
         $this->assertEmpty(array_diff(
@@ -55,7 +57,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
     public function testAccessingDataViaArrayAccessChecksDataAndIdentity()
     {
         $resource = new Resource(
-            $this->getMockBuilder('Aws\\Resource\\ResourceClient')
+            $this->getMockBuilder(ResourceClient::class)
                 ->disableOriginalConstructor()
                 ->getMock(),
             'whatever',
@@ -90,7 +92,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessingRelationshipsWorksForAllTypes()
     {
-        $rc = $this->getMockBuilder('Aws\\Resource\\ResourceClient')
+        $rc = $this->getMockBuilder(ResourceClient::class)
             ->disableOriginalConstructor()
             ->setMethods([
                  'getMetaData',

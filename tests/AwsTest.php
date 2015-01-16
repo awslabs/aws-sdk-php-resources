@@ -3,6 +3,7 @@ namespace Aws\Resource\Test;
 
 use Aws\Resource\Aws;
 use Aws\Sdk;
+use Aws\Signature\S3SignatureV4;
 
 /**
  * @covers Aws\Resource\Aws
@@ -39,7 +40,7 @@ class AwsTest extends \PHPUnit_Framework_TestCase
             ->s3(['signature' => 'v4']);
 
         $this->assertInstanceOf(
-            'Aws\\Signature\\S3SignatureV4',
+            S3SignatureV4::class,
             $s3->getClient()->getSignature()
         );
     }

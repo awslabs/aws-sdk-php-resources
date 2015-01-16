@@ -5,20 +5,28 @@ namespace Aws\Resource;
 use GuzzleHttp\HasDataTrait;
 use GuzzleHttp\ToArrayInterface;
 
+/**
+ * A resource object represents a single, identifiable AWS resource, such as an
+ * Amazon S3 bucket or an Amazon SQS queue.
+ *
+ * A resource object encapsulates the information about how to identify the
+ * resource and load its data, the actions that can be performed on
+ * the resource, and the other resources to which it the resource is related.
+ */
 class Resource implements ToArrayInterface, \IteratorAggregate, \ArrayAccess
 {
-    use ResourceTrait;
+    use HasTypeTrait;
 
-    /** @var array */
+    /** @var array Data for the resource. */
     protected $data = [];
 
-    /** @var array */
+    /** @var array Identity of the resource. */
     private $identity;
 
-    /** @var bool */
+    /** @var bool Whether the resource has been loaded. */
     private $loaded;
 
-    /** @var array */
+    /** @var array Resource metadata (e.g., actions, relationships, etc.) */
     private $meta;
 
     /**
@@ -155,8 +163,9 @@ class Resource implements ToArrayInterface, \IteratorAggregate, \ArrayAccess
         $id = rtrim($id, ', ') . ' ]';
 
         $service = ucfirst($this->meta['serviceName']);
+        $type =  ($this->type !== 'service') ? '.' . $this->type : '';
 
-        return "Resource <{$service}.{$this->type}> {$id}";
+        return "Resource <AWS.{$service}{$type}> {$id}";
     }
 
     public function __debugInfo()

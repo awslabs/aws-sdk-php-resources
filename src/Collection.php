@@ -6,7 +6,7 @@ use transducers as t;
 
 class Collection implements \IteratorAggregate
 {
-    use ResourceTrait;
+    use HasTypeTrait;
 
     private $results;
 

@@ -2,8 +2,7 @@
 
 namespace Aws\Resource;
 
-use Aws\Common\FlatMapIterator;
-use Aws\Common\MapIterator;
+use transducers as t;
 
 class Collection implements \IteratorAggregate
 {
@@ -25,19 +24,24 @@ class Collection implements \IteratorAggregate
 
     public function getIterator()
     {
-        return new FlatMapIterator($this->results, $this->toBatchFn);
+        return t\to_iter($this->results, t\mapcat($this->toBatchFn));
     }
 
     public function getBatches($size = null)
     {
         if ($size) {
-            $chunks = new ChunkedIterator($this->getIterator(), $size);
-            return new MapIterator($chunks, function ($resources) {
-                return new Batch($this->client, $this->type, $resources);
-            });
+            $xf = t\comp(
+                t\mapcat($this->toBatchFn),
+                t\partition($size),
+                t\map(function ($resources) {
+                    return new Batch($this->client, $this->type, $resources);
+                })
+            );
         } else {
-            return new MapIterator($this->results, $this->toBatchFn);
+            $xf = t\map($this->toBatchFn);
         }
+
+        return t\to_iter($this->results, $xf);
     }
 
     public function __debugInfo()

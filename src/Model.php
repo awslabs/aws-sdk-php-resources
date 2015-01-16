@@ -3,7 +3,7 @@
 namespace Aws\Resource;
 
 use GuzzleHttp\HasDataTrait;
-use JmesPath\Env as JmesPath;
+use JmesPath as jp;
 
 /**
  * @internal
@@ -30,8 +30,8 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
 
         // Create a service-level subResources key.
         $topLevelResources = array_values(array_diff(
-            JmesPath::search('keys(resources)', $data),
-            JmesPath::search('resources.*.subResources.resources[]', $data)
+            jp\search('keys(resources)', $data),
+            jp\search('resources.*.subResources.resources[]', $data)
         ));
         $data['service']['subResources'] = [
             'resources' => $topLevelResources,
@@ -62,16 +62,16 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
             $expr = sprintf(self::$paths[$expr], $resource, $action);
         }
 
-        return JmesPath::search($expr, $this->data);
+        return jp\search($expr, $this->data);
     }
 
     private function createMeta(array $data, $service)
     {
         $meta = [
-            'actions' => JmesPath::search('keys(actions||`[]`)', $data),
-            'belongsTo' => JmesPath::search('keys(belongsTo||`[]`)', $data),
-            'collections' => JmesPath::search('keys(hasMany||`[]`)', $data),
-            'subResources' => JmesPath::search('subResources.resources', $data) ?: [],
+            'actions'      => jp\search('keys(actions||`[]`)', $data),
+            'belongsTo'    => jp\search('keys(belongsTo||`[]`)', $data),
+            'collections'  => jp\search('keys(hasMany||`[]`)', $data),
+            'subResources' => jp\search('subResources.resources', $data) ?: [],
         ];
 
         $methods = [];
@@ -83,7 +83,7 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
 
         $meta['methods'] = $methods;
         $meta['serviceName'] = $service;
-        $meta['identifiers'] = JmesPath::search('identifiers[].name', $data) ?: [];
+        $meta['identifiers'] = jp\search('identifiers[].name', $data) ?: [];
 
         return $meta;
     }

@@ -1,8 +1,8 @@
 <?php
 namespace Aws\Resource\Test;
 
-use Aws\Common\AwsClientInterface;
-use Aws\Common\Result;
+use Aws\AwsClientInterface;
+use Aws\Result;
 use Aws\Resource\Aws;
 use Aws\Resource\Model;
 use Aws\Sdk;

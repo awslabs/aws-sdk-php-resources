@@ -1,7 +1,7 @@
 <?php
 namespace Aws\Resource\Test;
 
-use Aws\Common\Result;
+use Aws\Result;
 use Aws\Resource\Model;
 use Aws\Resource\Resource;
 use Aws\Resource\ResourceClient;
@@ -16,7 +16,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
 
     public function testInstantiatingClientAndGettersWork()
     {
-        $apiClient = $this->getMock('Aws\\Common\\AwsClientInterface');
+        $apiClient = $this->getMock('Aws\\AwsClientInterface');
         $model = new Model('s3', ['service' => [], 'resources' => []]);
 
         $resourceClient = new ResourceClient($apiClient, $model);
@@ -196,6 +196,6 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
 
         // Perform action that returns result.
         $result = $rc->performAction('Create', [], $bucket);
-        $this->assertInstanceOf('Aws\Common\ResultInterface', $result);
+        $this->assertInstanceOf('Aws\ResultInterface', $result);
     }
 }

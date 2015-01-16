@@ -2,7 +2,7 @@
 
 namespace Aws\Resource;
 
-use Aws\Common\AwsClientInterface;
+use Aws\AwsClientInterface;
 
 /**
  * Contains common properties and methods of the Resource, Batch, and Collection

@@ -39,7 +39,7 @@ class AwsTest extends \PHPUnit_Framework_TestCase
             ->s3(['signature' => 'v4']);
 
         $this->assertInstanceOf(
-            'Aws\\Common\\Signature\\S3SignatureV4',
+            'Aws\\Signature\\S3SignatureV4',
             $s3->getClient()->getSignature()
         );
     }

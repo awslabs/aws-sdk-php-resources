@@ -13,9 +13,9 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         $collection = $this->createCollection('foo', 3, 4);
 
-        $this->assertCount(12, $collection);
-        $this->assertCount(3, $collection->getBatches());
-        $this->assertCount(2, $collection->getBatches(7));
+        $this->assertEquals(12, iterator_count($collection->getIterator()));
+        $this->assertEquals(3, iterator_count($collection->getBatches()));
+        $this->assertEquals(2, iterator_count($collection->getBatches(7)));
 
         $batches = iterator_to_array($collection->getBatches(20), false);
         $this->assertCount(1, $batches);
@@ -37,14 +37,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $rc = $this->getMockBuilder('Aws\\Resource\\ResourceClient')
             ->disableOriginalConstructor()
             ->getMock();
-        $resource = $this->getMockBuilder('Aws\\Resource\\Resource')
-            ->disableOriginalConstructor()
-            ->getMock();
 
-        $fn = function ($whoCares) use ($rc, $resource, $type, $m) {
+        $fn = function ($whoCares) use ($rc, $type, $m) {
             $resources = [];
             for ($i = 0; $i < $m; $i++) {
-                $resources[$i] = clone $resource;
+                $resources[$i] = $this->getMockBuilder('Aws\\Resource\\Resource')
+                    ->disableOriginalConstructor()
+                    ->getMock();
             }
 
             return new Batch($rc, $type, $resources);

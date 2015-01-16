@@ -30,7 +30,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
 
         // Test getClient()
         $client = $bucket->getClient();
-        $this->assertInstanceOf('Aws\\Common\\AwsClientInterface', $client);
+        $this->assertInstanceOf('Aws\\AwsClientInterface', $client);
 
         // Test __toString()
         $this->assertEquals('Resource <S3.Bucket> [ Name => foo ]', $bucket);

@@ -1,12 +1,12 @@
 <?php
 namespace Aws\Resource;
 
-use Aws\Common\AwsClientInterface;
-use Aws\Common\MapIterator;
-use Aws\Common\Result;
-use Aws\Common\ResultInterface;
+use Aws\AwsClientInterface;
+use Aws\Result;
+use Aws\ResultInterface;
 use GuzzleHttp\Command\Command;
-use JmesPath\Env as JmesPath;
+use JmesPath as jp;
+use transducers as t;
 
 /**
  * @internal
@@ -134,12 +134,9 @@ class ResourceClient
                 $command->toArray()
             );
         } catch (\UnexpectedValueException $e) {
-            $paginator = new MapIterator(
-                new \ArrayIterator([$command]),
-                function (Command $command) {
-                    return $this->apiClient->execute($command);
-                }
-            );
+            $paginator = t\to_iter([$command], t\map(function (Command $command) {
+                return $this->apiClient->execute($command);
+            }));
         }
 
         // Create a new from the paginator, including a lambda that coverts
@@ -200,7 +197,7 @@ class ResourceClient
     private function createResources(array $info, $data, array $identity)
     {
         $data = isset($info['path'])
-            ? JmesPath::search($info['path'], $data)
+            ? jp\search($info['path'], $data)
             : null;
 
         if (isset($identity[0])) {
@@ -230,7 +227,7 @@ class ResourceClient
                     : null;
             // Source is pulled from the resource's data.
             case 'dataMember':
-                return JmesPath::search($param['source'], $resource);
+                return jp\search($param['source'], $resource);
             // Source is pulled from the command parameters.
             case 'requestParameter':
                 return $command[$param['source']];

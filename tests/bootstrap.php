@@ -8,5 +8,4 @@ $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 $loader->addPsr4('Aws\\Resource\\Test\\', __DIR__);
 
 // Clear our any JMESPath cache if necessary (e.g., COMPILE_DIR is enabled)
-$runtime = JmesPath\Env::createRuntime();
-$runtime->clearCache();
+$runtime = JmesPath\Env::cleanCompileDir();

@@ -67,6 +67,7 @@ class ResourceClient
 
     /**
      * @param string   $name
+     * @param array    $args
      * @param Resource $parent
      *
      * @return Resource|Batch
@@ -128,12 +129,12 @@ class ResourceClient
 
         // Create a paginator or an iterator that yields a single command's result.
         $command = $this->prepareCommand($info['request'], $parent, $args);
-        try {
+        if ($this->apiClient->getApi()->hasPaginator($command->getName())) {
             $paginator = $this->apiClient->getPaginator(
                 $command->getName(),
                 $command->toArray()
             );
-        } catch (\UnexpectedValueException $e) {
+        } else {
             $paginator = t\to_iter([$command], t\map(function (Command $command) {
                 return $this->apiClient->execute($command);
             }));
@@ -160,6 +161,18 @@ class ResourceClient
         );
     }
 
+    public function waitUntil($name, array $args, Resource $resource)
+    {
+        $config = isset($args[0]) ? $args[0] : [];
+        $args = [];
+
+        $waiter = $this->model->search('waiter', $resource->getType(), $name);
+        $this->prepareArgs($waiter['params'], $resource, $args);
+        $this->apiClient->waitUntil($waiter['waiterName'], $args, $config);
+
+        return $resource;
+    }
+
     /**
      * @param array    $request
      * @param Resource $resource
@@ -172,19 +185,31 @@ class ResourceClient
         Resource $resource,
         array $args = []
     ) {
+        if (isset($request['params'])) {
+            $this->prepareArgs($request['params'], $resource, $args);
+        }
+
+        return $this->apiClient->getCommand($request['operation'], $args);
+    }
+
+    /**
+     * @param array    $params
+     * @param Resource $resource
+     * @param array    $args
+     */
+    private function prepareArgs(
+        array $params,
+        Resource $resource,
+        array &$args
+    ) {
         // Star is used track the index for targets with "[*]".
         $star = null;
 
         // Resolve and set the arguments for the operation.
-        if (isset($request['params'])) {
-            foreach ($request['params'] as $param) {
-                $value = $this->resolveValue($param, $resource);
-                $this->setArgValue($param['target'], $value, $args, $star);
-            }
+        foreach ($params as $param) {
+            $value = $this->resolveValue($param, $resource);
+            $this->setArgValue($param['target'], $value, $args, $star);
         }
-
-        // Execute the operation.
-        return $this->apiClient->getCommand($request['operation'], $args);
     }
 
     /**

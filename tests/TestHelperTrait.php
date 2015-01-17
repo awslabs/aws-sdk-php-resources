@@ -7,6 +7,7 @@ use Aws\Resource\Aws;
 use Aws\Resource\Model;
 use Aws\Sdk;
 use GuzzleHttp\Command\Event\PreparedEvent;
+use GuzzleHttp\Message\Response;
 use GuzzleHttp\Ring\Client\MockHandler;
 
 /**
@@ -65,10 +66,12 @@ trait TestHelperTrait
      */
     private function setMockResults(AwsClientInterface $client, array $results)
     {
-        $client->getEmitter()->on('prepared',
+        $client->getEmitter()->on(
+            'prepared',
             function (PreparedEvent $event) use (&$results) {
                 $result = array_shift($results);
                 if ($result instanceof Result) {
+                    $event->getTransaction()->response = new Response(200);
                     $event->intercept($result);
                 } else {
                     throw new \Exception('There are no more mock results left. '

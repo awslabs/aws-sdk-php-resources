@@ -178,6 +178,19 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         ], $data);
     }
 
+    public function testWaitingForSomethingCallsClientWaiters()
+    {
+        $client = $this->getTestClient('s3');
+        $this->setMockResults($client, [new Result([])]);
+
+        $rc = new ResourceClient($client, $this->getModel('s3'));
+
+        $resource = new Resource($rc, 'Bucket', ['Name' => 'foo']);
+        $result = $rc->waitUntil('Exists', [], $resource);
+
+        $this->assertSame($result, $resource);
+    }
+
     public function testPerformingAnActionCanReturnResourcesOrResults()
     {
         // Setup client and parent resource for test.

@@ -7,7 +7,7 @@ use Aws\Resource\ResourceClient;
 
 /**
  * @covers Aws\Resource\Resource
- * @covers Aws\Resource\ResourceTrait
+ * @covers Aws\Resource\HasTypeTrait
  */
 class ResourceTest extends \PHPUnit_Framework_TestCase
 {
@@ -99,7 +99,8 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
                  'makeSubResource',
                  'makeBelongsToResource',
                  'performAction',
-                 'makeCollection'
+                 'makeCollection',
+                 'waitUntil',
             ])
             ->getMock();
         $rc->expects($this->once())->method('getMetaData')->willReturn([
@@ -107,17 +108,20 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             'belongsTo'    => ['B'],
             'collections'  => ['C'],
             'subResources' => ['D'],
+            'waiters'      => ['E'],
             'methods'      => [
                 'a' => 'actions',
                 'b' => 'belongsTo',
                 'c' => 'collections',
-                'd' => 'subResources'
+                'd' => 'subResources',
+                'e' => 'waiters',
             ]
         ]);
         $rc->expects($this->once())->method('makeSubResource');
         $rc->expects($this->once())->method('makeBelongsToResource');
         $rc->expects($this->once())->method('performAction');
         $rc->expects($this->once())->method('makeCollection');
+        $rc->expects($this->once())->method('waitUntil');
 
         $resource = new Resource($rc, 'Thing', []);
         foreach ($resource->respondsTo() as $property) {

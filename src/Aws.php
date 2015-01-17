@@ -8,19 +8,19 @@ use Aws\Sdk;
  * Service locator and starting point of the AWS Resource APIs.
  *
  * @method Resource cloudformation(array $args = [])
- * @property Resource $cloudformation
  * @method Resource ec2(array $args = [])
- * @property Resource $ec2
  * @method Resource s3(array $args = [])
- * @property Resource $glacier
  * @method Resource glacier(array $args = [])
  * @method Resource iam(array $args = [])
- * @property Resource $iam
- * @property Resource $s3
  * @method Resource sqs(array $args = [])
- * @property Resource $sqs
  * @method Resource sns(array $args = [])
- * @property Resource $sns
+ * @property \Aws\Resource\Resource $cloudformation
+ * @property \Aws\Resource\Resource $ec2
+ * @property \Aws\Resource\Resource $s3
+ * @property \Aws\Resource\Resource $glacier
+ * @property \Aws\Resource\Resource $iam
+ * @property \Aws\Resource\Resource $sqs
+ * @property \Aws\Resource\Resource $sns
  */
 class Aws
 {

@@ -19,6 +19,7 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
         'identifiersList' => '%s.identifiers[].name',
         'load' => '%s.load',
         'subResourcesIds' => '%s.subResources.identifiers',
+        'waiter' => '%s.waiters.%s',
     ];
 
     public function __construct($service, array $data)
@@ -72,12 +73,17 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
             'belongsTo'    => jp\search('keys(belongsTo||`[]`)', $data),
             'collections'  => jp\search('keys(hasMany||`[]`)', $data),
             'subResources' => jp\search('subResources.resources', $data) ?: [],
+            'waiters'      => jp\search('keys(waiters||`[]`)', $data),
         ];
 
         $methods = [];
         foreach ($meta as $key => $items) {
             foreach ($items as $item) {
-                $methods[lcfirst($item)] = $key;
+                if ($key === 'waiters') {
+                    $methods["waitUntil{$item}"] = $key;
+                } else {
+                    $methods[lcfirst($item)] = $key;
+                }
             }
         }
 

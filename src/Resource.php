@@ -2,7 +2,6 @@
 
 namespace Aws\Resource;
 
-use GuzzleHttp\HasDataTrait;
 use GuzzleHttp\ToArrayInterface;
 
 /**
@@ -194,6 +193,8 @@ class Resource implements ToArrayInterface, \IteratorAggregate, \ArrayAccess
                 return $this->client->makeCollection($name, $args, $this);
             case 'actions':
                 return $this->client->performAction($name, $args, $this);
+            case 'waiters':
+                return $this->client->waitUntil(substr($name, 9), $args, $this);
             default:
                 throw new \BadMethodCallException(
                     "You cannot call {$name} on the {$this->type} resource."

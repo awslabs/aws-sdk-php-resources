@@ -2,8 +2,6 @@
 
 namespace Aws\Resource;
 
-use GuzzleHttp\ToArrayInterface;
-
 /**
  * A resource object represents a single, identifiable AWS resource, such as an
  * Amazon S3 bucket or an Amazon SQS queue.
@@ -12,7 +10,7 @@ use GuzzleHttp\ToArrayInterface;
  * resource and load its data, the actions that can be performed on
  * the resource, and the other resources to which it the resource is related.
  */
-class Resource implements ToArrayInterface, \IteratorAggregate, \ArrayAccess
+class Resource implements \IteratorAggregate, \ArrayAccess
 {
     use HasTypeTrait;
 

@@ -2,11 +2,10 @@
 namespace Aws\Resource;
 
 use Aws\AwsClientInterface;
+use Aws\Command;
 use Aws\Result;
 use Aws\ResultInterface;
-use GuzzleHttp\Command\Command;
 use JmesPath as jp;
-use transducers as t;
 
 /**
  * @internal
@@ -135,9 +134,9 @@ class ResourceClient
                 $command->toArray()
             );
         } else {
-            $paginator = t\to_iter([$command], t\map(function (Command $command) {
+            $paginator = \Aws\map([$command], function (Command $command) {
                 return $this->apiClient->execute($command);
-            }));
+            });
         }
 
         // Create a new from the paginator, including a lambda that coverts

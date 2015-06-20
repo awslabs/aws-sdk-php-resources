@@ -17,7 +17,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
     {
         $bucket = $this->getTestAws()->s3->bucket('foo');
 
-        // Test getType() & getIdentity()
+        // Test getType() and getIdentity()
         $this->assertEquals('Bucket', $bucket->getType());
         $this->assertEquals(['Name' => 'foo'], $bucket->getIdentity());
 

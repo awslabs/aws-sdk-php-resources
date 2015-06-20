@@ -36,13 +36,10 @@ class AwsTest extends \PHPUnit_Framework_TestCase
     public function testCreatingServiceWithArgsOverwritesConfig()
     {
         $s3 = $this
-            ->getTestAws(['signature' => 'v3'])
-            ->s3(['signature' => 'v4']);
+            ->getTestAws(['region' => 'us-west-2'])
+            ->s3(['region' => 'us-west-1']);
 
-        $this->assertInstanceOf(
-            S3SignatureV4::class,
-            $s3->getClient()->getSignature()
-        );
+        $this->assertEquals('us-west-1', $s3->getClient()->getRegion());
     }
 
     /**
@@ -52,7 +49,7 @@ class AwsTest extends \PHPUnit_Framework_TestCase
     public function testAccessingUnsupportedResourceServiceThrowsException()
     {
         $aws = $this->getTestAws();
-        $ie = $aws->importexport;
+        $efs = $aws->efs;
     }
 
     public function testCallingRespondstoShowsServicesThatCanBeCreated()

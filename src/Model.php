@@ -2,15 +2,15 @@
 
 namespace Aws\Resource;
 
-use GuzzleHttp\HasDataTrait;
 use JmesPath as jp;
 
 /**
  * @internal
  */
-class Model implements \ArrayAccess, \IteratorAggregate, \Countable
+class Model
 {
-    use HasDataTrait;
+    /** @var array */
+    protected $data = [];
 
     private static $paths = [
         'action' => '%s.actions.%s',
@@ -68,13 +68,13 @@ class Model implements \ArrayAccess, \IteratorAggregate, \Countable
 
     private function createMeta(array $data, $service)
     {
-        $meta = [
-            'actions'      => jp\search('keys(actions||`[]`)', $data),
-            'belongsTo'    => jp\search('keys(belongsTo||`[]`)', $data),
-            'collections'  => jp\search('keys(hasMany||`[]`)', $data),
-            'subResources' => jp\search('subResources.resources', $data) ?: [],
-            'waiters'      => jp\search('keys(waiters||`[]`)', $data),
-        ];
+        $meta = jp\search('{'
+            . '"actions": keys(actions||`[]`),'
+            . '"belongsTo": keys(belongsTo||`[]`),'
+            . '"collections": keys(hasMany||`[]`),'
+            . '"subResources": subResources.resources||`[]`,'
+            . '"waiters": keys(waiters||`[]`)'
+        . '}', $data);
 
         $methods = [];
         foreach ($meta as $key => $items) {

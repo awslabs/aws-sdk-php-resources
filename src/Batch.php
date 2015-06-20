@@ -2,9 +2,7 @@
 
 namespace Aws\Resource;
 
-use GuzzleHttp\ToArrayInterface;
-
-class Batch implements ToArrayInterface, \Countable, \Iterator
+class Batch implements \Countable, \Iterator
 {
     use HasTypeTrait;
 

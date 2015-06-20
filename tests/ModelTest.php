@@ -15,8 +15,9 @@ class ModelTest extends \PHPUnit_Framework_TestCase
         $data = $this->getModel('s3', true);
         $model = new Model('s3', $data);
 
-        $this->assertArrayHasKey('_meta', $model['service']);
-        $this->assertArrayHasKey('subResources', $model['service']);
-        $this->assertArrayHasKey('_meta', $model['resources']['Bucket']);
+        $service = $model->search('service');
+        $this->assertArrayHasKey('_meta', $service);
+        $this->assertArrayHasKey('subResources', $service);
+        $this->assertArrayHasKey('_meta', $model->search('resources.Bucket'));
     }
 }

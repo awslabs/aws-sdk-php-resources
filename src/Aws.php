@@ -90,7 +90,7 @@ class Aws
     private function makeService($name, array $args = [])
     {
         if (!isset($this->services[$name]) || $args) {
-            $apiClient = $this->sdk->getClient($name, $args);
+            $apiClient = $this->sdk->createClient($name, $args);
             $model = $this->loadModel($name, $apiClient->getApi()->getApiVersion());
             $resourceClient = new ResourceClient($apiClient, $model);
             $this->services[$name] = new Resource($resourceClient, 'service', [], []);

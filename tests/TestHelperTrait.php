@@ -2,13 +2,11 @@
 namespace Aws\Resource\Test;
 
 use Aws\AwsClientInterface;
+use Aws\MockHandler;
 use Aws\Result;
 use Aws\Resource\Aws;
 use Aws\Resource\Model;
 use Aws\Sdk;
-use GuzzleHttp\Command\Event\PreparedEvent;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Ring\Client\MockHandler;
 
 /**
  * @internal
@@ -34,16 +32,16 @@ trait TestHelperTrait
     {
         // Disable network access unless INTEGRATION
         if (!isset($_SERVER['INTEGRATION'])) {
-            $args['ringphp_handler'] = new MockHandler(function () {
-                return ['error' => new \RuntimeException('No network access.')];
-            });
+            $args['http_handler'] = function () {
+                throw new \RuntimeException('No network access.');
+            };
         }
 
         return new Sdk($args + [
             'region'      => 'us-east-1',
             'version'     => 'latest',
             'credentials' => false,
-            'retries'     => false
+            'retries'     => 0
         ]);
     }
 
@@ -55,7 +53,7 @@ trait TestHelperTrait
      */
     private function getTestClient($service, array $args = [])
     {
-        return $this->getTestSdk()->getClient($service, $args);
+        return $this->getTestSdk()->createClient($service, $args);
     }
 
     /**
@@ -66,20 +64,7 @@ trait TestHelperTrait
      */
     private function setMockResults(AwsClientInterface $client, array $results)
     {
-        $client->getEmitter()->on(
-            'prepared',
-            function (PreparedEvent $event) use (&$results) {
-                $result = array_shift($results);
-                if ($result instanceof Result) {
-                    $event->getTransaction()->response = new Response(200);
-                    $event->intercept($result);
-                } else {
-                    throw new \Exception('There are no more mock results left. '
-                        . 'This client executed more commands than expected.');
-                }
-            },
-            'last'
-        );
+        $client->getHandlerList()->setHandler(new MockHandler($results));
     }
 
     /**
@@ -87,7 +72,7 @@ trait TestHelperTrait
      *
      * @return Model|array
      */
-    private function getModel($service, $raw = false)
+    private function getModel($service, $raw = false, callable $modifyFn = null)
     {
         static $models = [];
         if (!isset($models[$service])) {
@@ -96,6 +81,11 @@ trait TestHelperTrait
             $models[$service] = include reset($paths);
         }
 
-        return $raw ? $models[$service] : new Model($service, $models[$service]);
+        $data = $models[$service];
+        if ($modifyFn) {
+            $data = $modifyFn($data);
+        }
+
+        return $raw ? $data : new Model($service, $data);
     }
 }

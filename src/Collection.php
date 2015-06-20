@@ -2,8 +2,6 @@
 
 namespace Aws\Resource;
 
-use transducers as t;
-
 class Collection implements \IteratorAggregate
 {
     use HasTypeTrait;
@@ -24,24 +22,22 @@ class Collection implements \IteratorAggregate
 
     public function getIterator()
     {
-        return t\to_iter($this->results, t\mapcat($this->toBatchFn));
+        return \Aws\flatmap($this->results, $this->toBatchFn);
     }
 
     public function getBatches($size = null)
     {
+        $items = $this->results;
+        $mapFn = $this->toBatchFn;
+
         if ($size) {
-            $xf = t\comp(
-                t\mapcat($this->toBatchFn),
-                t\partition($size),
-                t\map(function ($resources) {
-                    return new Batch($this->client, $this->type, $resources);
-                })
-            );
-        } else {
-            $xf = t\map($this->toBatchFn);
+            $items = \Aws\partition(\Aws\flatmap($items, $mapFn), $size);
+            $mapFn = function ($resources) {
+                return new Batch($this->client, $this->type, $resources);
+            };
         }
 
-        return t\to_iter($this->results, $xf);
+        return \Aws\map($items, $mapFn);
     }
 
     public function __debugInfo()

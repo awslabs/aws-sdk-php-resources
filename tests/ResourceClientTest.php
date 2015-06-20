@@ -2,6 +2,7 @@
 namespace Aws\Resource\Test;
 
 use Aws\AwsClientInterface;
+use Aws\Middleware;
 use Aws\Result;
 use Aws\Resource\Model;
 use Aws\Resource\Resource;
@@ -36,19 +37,20 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
     {
         // Setup API client
         $client = $this->getTestClient('s3');
-        $client->getEmitter()->on(
-            'prepared',
-            function (PreparedEvent $e) use (&$command) {
-                $command = $e->getCommand();
-            }
+        $client->getHandlerList()->appendBuild(
+            Middleware::tap(function ($c) use (&$command) {
+                $command = $c;
+            })
         );
         $this->setMockResults($client, [
             new Result(['A' => 1, 'B' => ['C' => 3]])
         ]);
 
         // Setup model
-        $model = $this->getModel('s3');
-        $model->setPath('resources/Object/load/path', $path);
+        $model = $this->getModel('s3', false, function ($data) use ($path) {
+            $data['resources']['Object']['load']['path'] = $path;
+            return $data;
+        });
 
         // Setup resource client and call loadResourceData
         $rc = new ResourceClient($client, $model);
@@ -56,12 +58,15 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
             'BucketName' => 'foo',
             'Key' => 'bar',
         ]));
+        $params = $command->toArray();
 
+        // Filter out stuff we don't want to compare
+        unset($data['@metadata']);
+        unset($params['@http']);
+
+        // Verify the results are as expected
         $this->assertEquals($expected, $data);
-        $this->assertEquals(
-            ['Bucket' => 'foo', 'Key' => 'bar'],
-            $command->toArray()
-        );
+        $this->assertEquals(['Bucket' => 'foo', 'Key' => 'bar'], $params);
     }
 
     public function getTestCasesForLoadingAResource()

@@ -2,8 +2,10 @@
 namespace Aws\Resource\Test;
 
 use Aws\AwsClientInterface;
+use Aws\Command;
+use Aws\CommandPool;
+use Aws\Middleware;
 use Aws\Resource\Aws;
-use GuzzleHttp\Command\Event\ProcessEvent;
 
 class IntegrationTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,7 +17,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
             'region'  => 'us-east-1',
         ]);
 
-        $this->attachCommandListener($aws->s3->getClient());
+        $this->attachCommandMiddleware($aws->s3->getClient());
         if (!$aws->s3->respondsTo('createBucket')) {
             $this->fail('Methods are not available.');
         }
@@ -35,7 +37,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $object = $bucket->object('test-file');
         $result = $object->put(['Body' => 'foo']);
         $this->assertEquals(
-            "https://{$bucket['Name']}.s3.amazonaws.com/{$object['Key']}",
+            "https://s3.amazonaws.com/{$bucket['Name']}/{$object['Key']}",
             $result['ObjectURL']
         );
         // Could have also done it this way:
@@ -58,7 +60,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
             'region'  => 'us-west-2',
         ]);
 
-        $this->attachCommandListener($aws->s3->getClient());
+        $this->attachCommandMiddleware($aws->s3->getClient());
 
         $this->log('Creating a bucket...');
         $bucket = $aws->s3->createBucket([
@@ -70,7 +72,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $bucket->waitUntilExists();
 
         $this->log('Uploading 20 dummy objects...');
-        $bucket->getClient()->executeAll(array_map(
+        CommandPool::batch($bucket->getClient(), array_map(
             function ($value) use ($bucket) {
                 return $bucket->getClient()->getCommand('PutObject', [
                     'Bucket' => $bucket['Name'],
@@ -109,10 +111,10 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         fwrite(STDOUT, $message . "\n");
     }
 
-    private function attachCommandListener(AwsClientInterface $client)
+    private function attachCommandMiddleware(AwsClientInterface $client)
     {
-        $client->getEmitter()->on('process', function (ProcessEvent $e) {
-            self::log('> Executed a "' . $e->getCommand()->getName(). '" command.');
-        });
+        $client->getHandlerList()->appendBuild(Middleware::tap(function (Command $command) {
+            $this->log('> Executed a "' . $command->getName(). '" command.');
+        }));
     }
 }

@@ -183,10 +183,8 @@ class Resource implements \IteratorAggregate, \ArrayAccess
             : null;
         $name = ucfirst($name);
         switch ($type) {
-            case 'subResources':
-                return $this->client->makeSubResource($name, $args, $this);
-            case 'belongsTo':
-                return $this->client->makeBelongsToResource($name, $args, $this);
+            case 'related':
+                return $this->client->makeRelated($name, $args, $this);
             case 'collections':
                 return $this->client->makeCollection($name, $args, $this);
             case 'actions':

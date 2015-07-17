@@ -96,8 +96,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods([
                  'getMetaData',
-                 'makeSubResource',
-                 'makeBelongsToResource',
+                 'makeRelated',
                  'performAction',
                  'makeCollection',
                  'waitUntil',
@@ -105,20 +104,17 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
             ->getMock();
         $rc->expects($this->once())->method('getMetaData')->willReturn([
             'actions'      => ['A'],
-            'belongsTo'    => ['B'],
+            'related'      => ['B'],
             'collections'  => ['C'],
-            'subResources' => ['D'],
-            'waiters'      => ['E'],
+            'waiters'      => ['D'],
             'methods'      => [
                 'a' => 'actions',
-                'b' => 'belongsTo',
+                'b' => 'related',
                 'c' => 'collections',
-                'd' => 'subResources',
-                'e' => 'waiters',
+                'd' => 'waiters',
             ]
         ]);
-        $rc->expects($this->once())->method('makeSubResource');
-        $rc->expects($this->once())->method('makeBelongsToResource');
+        $rc->expects($this->once())->method('makeRelated');
         $rc->expects($this->once())->method('performAction');
         $rc->expects($this->once())->method('makeCollection');
         $rc->expects($this->once())->method('waitUntil');

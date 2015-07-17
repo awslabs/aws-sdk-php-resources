@@ -34,22 +34,28 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($bucket->isLoaded());
 
         $this->log('Uploading an object...');
-        $object = $bucket->object('test-file');
-        $result = $object->put(['Body' => 'foo']);
+        $object1 = $bucket->object('test-file1');
+        $result = $object1->put(['Body' => 'foo']);
         $this->assertEquals(
-            "https://s3.amazonaws.com/{$bucket['Name']}/{$object['Key']}",
+            "https://s3.amazonaws.com/{$bucket['Name']}/{$object1['Key']}",
             $result['ObjectURL']
         );
-        // Could have also done it this way:
-        // $object = $bucket->putObject(['Key' => 'test-file', 'Body' => 'foo']);
+
+        $this->log('Uploading another object...');
+        $object2 = $bucket->putObject(['Key' => 'test-file2', 'Body' => 'foo']);
+        $this->assertEquals(
+            "https://s3.amazonaws.com/{$bucket['Name']}/test-file2",
+            $bucket->getClient()->getObjectUrl($object2['BucketName'], $object2['Key'])
+        );
 
         $this->log('Getting an object...');
-        $result = $object->get();
+        $result = $object1->get();
         $this->assertEquals('foo', (string) $result['Body']);
 
-        $this->log('Deleting the object and bucket...');
-        $object->delete();
-        $bucket->delete();
+        $this->log('Deleting the objects and bucket...');
+        $object1->delete();
+        $object2->delete();
+        $object2->bucket->delete();
     }
 
     public function testWorkflowWithCollections()
@@ -100,6 +106,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
                 $object->delete();
             }
         }
+        $this->log('Verifying batch sizes...');
         $this->assertSame([6, 6, 6, 2], $counts);
 
         $this->log('Deleting the bucket...');
@@ -114,7 +121,10 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
     private function attachCommandMiddleware(AwsClientInterface $client)
     {
         $client->getHandlerList()->appendBuild(Middleware::tap(function (Command $command) {
-            $this->log('> Executed a "' . $command->getName(). '" command.');
+            $this->log(
+                '> Executed a "' . $command->getName(). '" command'
+                . ($command['Key'] ? " (Key: {$command['Key']})." : '.')
+            );
         }));
     }
 }

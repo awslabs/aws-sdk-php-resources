@@ -10,8 +10,21 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'Bucket',
+              'source' => 'requestParameter',
+              'path' => 'Bucket',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'has' => [
+      'Bucket' => [
+        'resource' => [
+          'type' => 'Bucket',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
             ],
           ],
         ],
@@ -27,8 +40,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'Buckets[].Name',
+              'source' => 'response',
+              'path' => 'Buckets[].Name',
             ],
           ],
           'path' => 'Buckets[]',
@@ -51,8 +64,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -63,8 +76,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -75,8 +88,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -87,8 +100,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -97,13 +110,13 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Key',
+                'source' => 'requestParameter',
+                'path' => 'Key',
               ],
             ],
           ],
@@ -115,8 +128,8 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -125,8 +138,146 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Acl' => [
+          'resource' => [
+            'type' => 'BucketAcl',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Cors' => [
+          'resource' => [
+            'type' => 'BucketCors',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Lifecycle' => [
+          'resource' => [
+            'type' => 'BucketLifecycle',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Logging' => [
+          'resource' => [
+            'type' => 'BucketLogging',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Notification' => [
+          'resource' => [
+            'type' => 'BucketNotification',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Object' => [
+          'resource' => [
+            'type' => 'Object',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Policy' => [
+          'resource' => [
+            'type' => 'BucketPolicy',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'RequestPayment' => [
+          'resource' => [
+            'type' => 'BucketRequestPayment',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Tagging' => [
+          'resource' => [
+            'type' => 'BucketTagging',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Versioning' => [
+          'resource' => [
+            'type' => 'BucketVersioning',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Website' => [
+          'resource' => [
+            'type' => 'BucketWebsite',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
             ],
           ],
         ],
@@ -138,8 +289,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -148,18 +299,18 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'ObjectKey',
-                'sourceType' => 'responsePath',
-                'source' => 'Uploads[].Key',
+                'source' => 'response',
+                'path' => 'Uploads[].Key',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Uploads[].UploadId',
+                'source' => 'response',
+                'path' => 'Uploads[].UploadId',
               ],
             ],
             'path' => 'Uploads[]',
@@ -171,8 +322,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -181,18 +332,18 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'ObjectKey',
-                'sourceType' => 'responsePath',
-                'source' => '[Versions,DeleteMarkers]|[].Key',
+                'source' => 'response',
+                'path' => '[Versions,DeleteMarkers]|[].Key',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => '[Versions,DeleteMarkers]|[].VersionId',
+                'source' => 'response',
+                'path' => '[Versions,DeleteMarkers]|[].VersionId',
               ],
             ],
             'path' => '[Versions,DeleteMarkers]|[]',
@@ -204,44 +355,27 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
           'resource' => [
-            'type' => 'Object',
+            'type' => 'ObjectSummary',
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'responsePath',
-                'source' => 'Contents[].Key',
+                'source' => 'response',
+                'path' => 'Contents[].Key',
               ],
             ],
+            'path' => 'Contents[]',
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'BucketAcl',
-          'BucketCors',
-          'BucketLifecycle',
-          'BucketLogging',
-          'BucketPolicy',
-          'BucketNotification',
-          'BucketRequestPayment',
-          'BucketTagging',
-          'BucketVersioning',
-          'BucketWebsite',
-          'Object',
-        ],
-        'identifiers' => [
-          'Name' => 'BucketName',
         ],
       ],
     ],
@@ -258,12 +392,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Put' => [
@@ -272,8 +406,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -293,12 +441,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -307,8 +455,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -319,8 +467,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -340,12 +502,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -354,8 +516,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -366,8 +528,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -387,12 +563,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Put' => [
@@ -401,8 +577,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -415,29 +605,43 @@
           'name' => 'BucketName',
         ],
       ],
-      'shape' => 'GetBucketNotificationOutput',
+      'shape' => 'NotificationConfiguration',
       'load' => [
         'request' => [
-          'operation' => 'GetBucketNotification',
+          'operation' => 'GetBucketNotificationConfiguration',
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Put' => [
           'request' => [
-            'operation' => 'PutBucketNotification',
+            'operation' => 'PutBucketNotificationConfiguration',
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -457,12 +661,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -471,8 +675,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -483,8 +687,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -504,12 +722,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Put' => [
@@ -518,8 +736,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -539,12 +771,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -553,8 +785,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -565,8 +797,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -586,12 +832,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Enable' => [
@@ -600,13 +846,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'VersioningConfiguration.Status',
-                'sourceType' => 'string',
-                'source' => 'Enabled',
+                'source' => 'string',
+                'value' => 'Enabled',
               ],
             ],
           ],
@@ -617,8 +863,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -629,13 +875,27 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'VersioningConfiguration.Status',
-                'sourceType' => 'string',
-                'source' => 'Suspended',
+                'source' => 'string',
+                'value' => 'Suspended',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -655,12 +915,12 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -669,8 +929,8 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -681,8 +941,22 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
             ],
           ],
@@ -709,18 +983,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'UploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -731,18 +1005,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'UploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -751,13 +1025,58 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Object' => [
+          'resource' => [
+            'type' => 'Object',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+            ],
+          ],
+        ],
+        'Part' => [
+          'resource' => [
+            'type' => 'MultipartUploadPart',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+              [
+                'target' => 'MultipartUploadId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'PartNumber',
+                'source' => 'input',
               ],
             ],
           ],
@@ -770,18 +1089,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'UploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -790,37 +1109,27 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'requestParameter',
-                'source' => 'Bucket',
+                'source' => 'requestParameter',
+                'path' => 'Bucket',
               ],
               [
                 'target' => 'ObjectKey',
-                'sourceType' => 'requestParameter',
-                'source' => 'Key',
+                'source' => 'requestParameter',
+                'path' => 'Key',
               ],
               [
                 'target' => 'MultipartUploadId',
-                'sourceType' => 'requestParameter',
-                'source' => 'UploadId',
+                'source' => 'requestParameter',
+                'path' => 'UploadId',
               ],
               [
                 'target' => 'PartNumber',
-                'sourceType' => 'responsePath',
-                'source' => 'Parts[].PartNumber',
+                'source' => 'response',
+                'path' => 'Parts[].PartNumber',
               ],
             ],
             'path' => 'Parts[]',
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'MultipartUploadPart',
-        ],
-        'identifiers' => [
-          'BucketName' => 'BucketName',
-          'Id' => 'MultipartUploadId',
-          'ObjectKey' => 'ObjectKey',
         ],
       ],
     ],
@@ -849,23 +1158,23 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'UploadId',
-                'sourceType' => 'identifier',
-                'source' => 'MultipartUploadId',
+                'source' => 'identifier',
+                'name' => 'MultipartUploadId',
               ],
               [
                 'target' => 'PartNumber',
-                'sourceType' => 'identifier',
-                'source' => 'PartNumber',
+                'source' => 'identifier',
+                'name' => 'PartNumber',
               ],
             ],
           ],
@@ -876,23 +1185,47 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'UploadId',
-                'sourceType' => 'identifier',
-                'source' => 'MultipartUploadId',
+                'source' => 'identifier',
+                'name' => 'MultipartUploadId',
               ],
               [
                 'target' => 'PartNumber',
-                'sourceType' => 'identifier',
-                'source' => 'PartNumber',
+                'source' => 'identifier',
+                'name' => 'PartNumber',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'MultipartUpload' => [
+          'resource' => [
+            'type' => 'MultipartUpload',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'identifier',
+                'name' => 'MultipartUploadId',
               ],
             ],
           ],
@@ -915,17 +1248,17 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
             [
               'target' => 'Key',
-              'sourceType' => 'identifier',
-              'source' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'CopyFrom' => [
@@ -934,13 +1267,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -951,13 +1284,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -968,13 +1301,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -985,13 +1318,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -1000,18 +1333,18 @@
             'identifiers' => [
               [
                 'target' => 'BucketName',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'ObjectKey',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'UploadId',
+                'source' => 'response',
+                'path' => 'UploadId',
               ],
             ],
           ],
@@ -1022,13 +1355,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -1041,13 +1374,13 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Delete.Objects[].Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
             ],
           ],
@@ -1059,13 +1392,13 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
             [
               'target' => 'Key',
-              'sourceType' => 'identifier',
-              'source' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
             ],
           ],
         ],
@@ -1074,26 +1407,88 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
             [
               'target' => 'Key',
-              'sourceType' => 'identifier',
-              'source' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
             ],
           ],
         ],
       ],
-      'subResources' => [
-        'resources' => [
-          'ObjectAcl',
-          'ObjectVersion',
-          'MultipartUpload',
+      'has' => [
+        'Acl' => [
+          'resource' => [
+            'type' => 'ObjectAcl',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
         ],
-        'identifiers' => [
-          'BucketName' => 'BucketName',
-          'Key' => 'ObjectKey',
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+        'MultipartUpload' => [
+          'resource' => [
+            'type' => 'MultipartUpload',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Version' => [
+          'resource' => [
+            'type' => 'ObjectVersion',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
         ],
       ],
     ],
@@ -1113,17 +1508,17 @@
           'params' => [
             [
               'target' => 'Bucket',
-              'sourceType' => 'identifier',
-              'source' => 'BucketName',
+              'source' => 'identifier',
+              'name' => 'BucketName',
             ],
             [
               'target' => 'Key',
-              'sourceType' => 'identifier',
-              'source' => 'ObjectKey',
+              'source' => 'identifier',
+              'name' => 'ObjectKey',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Put' => [
@@ -1132,13 +1527,291 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Object' => [
+          'resource' => [
+            'type' => 'Object',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'ObjectSummary' => [
+      'identifiers' => [
+        [
+          'name' => 'BucketName',
+        ],
+        [
+          'name' => 'Key',
+        ],
+      ],
+      'shape' => 'Object',
+      'actions' => [
+        'CopyFrom' => [
+          'request' => [
+            'operation' => 'CopyObject',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteObject',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+        'Get' => [
+          'request' => [
+            'operation' => 'GetObject',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+        'InitiateMultipartUpload' => [
+          'request' => [
+            'operation' => 'CreateMultipartUpload',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'MultipartUpload',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'response',
+                'path' => 'UploadId',
+              ],
+            ],
+          ],
+        ],
+        'Put' => [
+          'request' => [
+            'operation' => 'PutObject',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'batchActions' => [
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteObjects',
+            'params' => [
+              [
+                'target' => 'Bucket',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Delete.Objects[].Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'waiters' => [
+        'Exists' => [
+          'waiterName' => 'ObjectExists',
+          'params' => [
+            [
+              'target' => 'Bucket',
+              'source' => 'identifier',
+              'name' => 'BucketName',
+            ],
+            [
+              'target' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
+            ],
+          ],
+        ],
+        'NotExists' => [
+          'waiterName' => 'ObjectNotExists',
+          'params' => [
+            [
+              'target' => 'Bucket',
+              'source' => 'identifier',
+              'name' => 'BucketName',
+            ],
+            [
+              'target' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Acl' => [
+          'resource' => [
+            'type' => 'ObjectAcl',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+        'Bucket' => [
+          'resource' => [
+            'type' => 'Bucket',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+            ],
+          ],
+        ],
+        'MultipartUpload' => [
+          'resource' => [
+            'type' => 'MultipartUpload',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Object' => [
+          'resource' => [
+            'type' => 'Object',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+            ],
+          ],
+        ],
+        'Version' => [
+          'resource' => [
+            'type' => 'ObjectVersion',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'Key',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
               ],
             ],
           ],
@@ -1165,18 +1838,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'VersionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1187,18 +1860,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'VersionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1209,18 +1882,18 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'VersionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1233,18 +1906,37 @@
             'params' => [
               [
                 'target' => 'Bucket',
-                'sourceType' => 'identifier',
-                'source' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
               ],
               [
                 'target' => 'Delete.Objects[*].Key',
-                'sourceType' => 'identifier',
-                'source' => 'ObjectKey',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
               [
                 'target' => 'Delete.Objects[*].VersionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Object' => [
+          'resource' => [
+            'type' => 'Object',
+            'identifiers' => [
+              [
+                'target' => 'BucketName',
+                'source' => 'identifier',
+                'name' => 'BucketName',
+              ],
+              [
+                'target' => 'Key',
+                'source' => 'identifier',
+                'name' => 'ObjectKey',
               ],
             ],
           ],

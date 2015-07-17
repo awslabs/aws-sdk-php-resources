@@ -10,8 +10,32 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'StackName',
+              'source' => 'requestParameter',
+              'path' => 'StackName',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'has' => [
+      'Event' => [
+        'resource' => [
+          'type' => 'Event',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Stack' => [
+        'resource' => [
+          'type' => 'Stack',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
             ],
           ],
         ],
@@ -27,8 +51,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'Stacks[].StackName',
+              'source' => 'response',
+              'path' => 'Stacks[].StackName',
             ],
           ],
         ],
@@ -40,6 +64,7 @@
       'identifiers' => [
         [
           'name' => 'Id',
+          'memberName' => 'EventId',
         ],
       ],
       'shape' => 'StackEvent',
@@ -48,6 +73,7 @@
       'identifiers' => [
         [
           'name' => 'Name',
+          'memberName' => 'StackName',
         ],
       ],
       'shape' => 'Stack',
@@ -57,8 +83,8 @@
           'params' => [
             [
               'target' => 'StackName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -71,8 +97,8 @@
             'params' => [
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -83,8 +109,8 @@
             'params' => [
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -95,8 +121,26 @@
             'params' => [
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Resource' => [
+          'resource' => [
+            'type' => 'StackResource',
+            'identifiers' => [
+              [
+                'target' => 'StackName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'LogicalId',
+                'source' => 'input',
               ],
             ],
           ],
@@ -109,8 +153,8 @@
             'params' => [
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -119,8 +163,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'StackEvents[].EventId',
+                'source' => 'response',
+                'path' => 'StackEvents[].EventId',
               ],
             ],
             'path' => 'StackEvents[]',
@@ -132,8 +176,8 @@
             'params' => [
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -142,35 +186,28 @@
             'identifiers' => [
               [
                 'target' => 'LogicalId',
-                'sourceType' => 'responsePath',
-                'source' => 'StackResourceSummaries[].LogicalResourceId',
+                'source' => 'response',
+                'path' => 'StackResourceSummaries[].LogicalResourceId',
               ],
               [
                 'target' => 'StackName',
-                'sourceType' => 'requestParameter',
-                'source' => 'StackName',
+                'source' => 'requestParameter',
+                'path' => 'StackName',
               ],
             ],
             'path' => 'StackResourceSummaries[]',
           ],
         ],
       ],
-      'subResources' => [
-        'resources' => [
-          'StackResource',
-        ],
-        'identifiers' => [
-          'Name' => 'StackName',
-        ],
-      ],
     ],
     'StackResource' => [
       'identifiers' => [
         [
-          'name' => 'LogicalId',
+          'name' => 'StackName',
         ],
         [
-          'name' => 'StackName',
+          'name' => 'LogicalId',
+          'memberName' => 'LogicalResourceId',
         ],
       ],
       'shape' => 'StackResourceDetail',
@@ -180,43 +217,58 @@
           'params' => [
             [
               'target' => 'LogicalResourceId',
-              'sourceType' => 'identifier',
-              'source' => 'LogicalId',
+              'source' => 'identifier',
+              'name' => 'LogicalId',
             ],
             [
               'target' => 'StackName',
-              'sourceType' => 'identifier',
-              'source' => 'StackName',
+              'source' => 'identifier',
+              'name' => 'StackName',
             ],
           ],
         ],
         'path' => 'StackResourceDetail',
       ],
+      'has' => [
+        'Stack' => [
+          'resource' => [
+            'type' => 'Stack',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'StackName',
+              ],
+            ],
+          ],
+        ],
+      ],
     ],
     'StackResourceSummary' => [
       'identifiers' => [
         [
-          'name' => 'LogicalId',
+          'name' => 'StackName',
         ],
         [
-          'name' => 'StackName',
+          'name' => 'LogicalId',
+          'memberName' => 'LogicalResourceId',
         ],
       ],
       'shape' => 'StackResourceSummary',
-      'belongsTo' => [
+      'has' => [
         'Resource' => [
           'resource' => [
             'type' => 'StackResource',
             'identifiers' => [
               [
                 'target' => 'LogicalId',
-                'sourceType' => 'identifier',
-                'source' => 'LogicalId',
+                'source' => 'identifier',
+                'name' => 'LogicalId',
               ],
               [
                 'target' => 'StackName',
-                'sourceType' => 'identifier',
-                'source' => 'StackName',
+                'source' => 'identifier',
+                'name' => 'StackName',
               ],
             ],
           ],

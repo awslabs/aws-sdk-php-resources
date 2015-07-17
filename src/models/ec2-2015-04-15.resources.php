@@ -10,8 +10,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'DhcpOptions.DhcpOptionsId',
+              'source' => 'response',
+              'path' => 'DhcpOptions.DhcpOptionsId',
             ],
           ],
           'path' => 'DhcpOptions',
@@ -26,8 +26,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Instances[].InstanceId',
+              'source' => 'response',
+              'path' => 'Instances[].InstanceId',
             ],
           ],
           'path' => 'Instances[]',
@@ -42,8 +42,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'InternetGateway.InternetGatewayId',
+              'source' => 'response',
+              'path' => 'InternetGateway.InternetGatewayId',
             ],
           ],
           'path' => 'InternetGateway',
@@ -58,8 +58,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'KeyName',
+              'source' => 'response',
+              'path' => 'KeyName',
             ],
           ],
         ],
@@ -73,8 +73,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'NetworkAcl.NetworkAclId',
+              'source' => 'response',
+              'path' => 'NetworkAcl.NetworkAclId',
             ],
           ],
           'path' => 'NetworkAcl',
@@ -89,8 +89,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'NetworkInterface.NetworkInterfaceId',
+              'source' => 'response',
+              'path' => 'NetworkInterface.NetworkInterfaceId',
             ],
           ],
           'path' => 'NetworkInterface',
@@ -104,9 +104,9 @@
           'type' => 'PlacementGroup',
           'identifiers' => [
             [
-              'target' => 'Id',
-              'sourceType' => 'requestParameter',
-              'source' => 'GroupName',
+              'target' => 'Name',
+              'source' => 'requestParameter',
+              'path' => 'GroupName',
             ],
           ],
         ],
@@ -120,8 +120,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'RouteTable.RouteTableId',
+              'source' => 'response',
+              'path' => 'RouteTable.RouteTableId',
             ],
           ],
           'path' => 'RouteTable',
@@ -136,8 +136,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'GroupId',
+              'source' => 'response',
+              'path' => 'GroupId',
             ],
           ],
         ],
@@ -151,11 +151,11 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'SnapshotId',
+              'source' => 'response',
+              'path' => 'SnapshotId',
             ],
           ],
-          'path' => '$',
+          'path' => '@',
         ],
       ],
       'CreateSubnet' => [
@@ -167,8 +167,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Subnet.SubnetId',
+              'source' => 'response',
+              'path' => 'Subnet.SubnetId',
             ],
           ],
           'path' => 'Subnet',
@@ -178,41 +178,21 @@
         'request' => [
           'operation' => 'CreateTags',
         ],
-        'resource' => [
-          'type' => 'Tag',
-          'identifiers' => [
-            [
-              'target' => 'ResourceId',
-              'sourceType' => 'requestParameter',
-              'source' => 'Resources[]',
-            ],
-            [
-              'target' => 'Key',
-              'sourceType' => 'requestParameter',
-              'source' => 'Tags[].Key',
-            ],
-            [
-              'target' => 'Value',
-              'sourceType' => 'requestParameter',
-              'source' => 'Tags[].Value',
-            ],
-          ],
-        ],
       ],
       'CreateVolume' => [
         'request' => [
           'operation' => 'CreateVolume',
         ],
         'resource' => [
-          'type' => 'Image',
+          'type' => 'Volume',
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'VolumeId',
+              'source' => 'response',
+              'path' => 'VolumeId',
             ],
           ],
-          'path' => '$',
+          'path' => '@',
         ],
       ],
       'CreateVpc' => [
@@ -224,8 +204,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Vpc.VpcId',
+              'source' => 'response',
+              'path' => 'Vpc.VpcId',
             ],
           ],
           'path' => 'Vpc',
@@ -240,8 +220,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'VpcPeeringConnection.VpcPeeringConnectionId',
+              'source' => 'response',
+              'path' => 'VpcPeeringConnection.VpcPeeringConnectionId',
             ],
           ],
           'path' => 'VpcPeeringConnection',
@@ -261,8 +241,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'KeyName',
+              'source' => 'response',
+              'path' => 'KeyName',
             ],
           ],
         ],
@@ -276,14 +256,220 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'ImageId',
+              'source' => 'response',
+              'path' => 'ImageId',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'has' => [
+      'DhcpOptions' => [
+        'resource' => [
+          'type' => 'DhcpOptions',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Image' => [
+        'resource' => [
+          'type' => 'Image',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Instance' => [
+        'resource' => [
+          'type' => 'Instance',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'InternetGateway' => [
+        'resource' => [
+          'type' => 'InternetGateway',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'KeyPair' => [
+        'resource' => [
+          'type' => 'KeyPair',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'NetworkAcl' => [
+        'resource' => [
+          'type' => 'NetworkAcl',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'NetworkInterface' => [
+        'resource' => [
+          'type' => 'NetworkInterface',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'PlacementGroup' => [
+        'resource' => [
+          'type' => 'PlacementGroup',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'RouteTable' => [
+        'resource' => [
+          'type' => 'RouteTable',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'RouteTableAssociation' => [
+        'resource' => [
+          'type' => 'RouteTableAssociation',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'SecurityGroup' => [
+        'resource' => [
+          'type' => 'SecurityGroup',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Snapshot' => [
+        'resource' => [
+          'type' => 'Snapshot',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Subnet' => [
+        'resource' => [
+          'type' => 'Subnet',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Volume' => [
+        'resource' => [
+          'type' => 'Volume',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Vpc' => [
+        'resource' => [
+          'type' => 'Vpc',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'VpcPeeringConnection' => [
+        'resource' => [
+          'type' => 'VpcPeeringConnection',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
             ],
           ],
         ],
       ],
     ],
     'hasMany' => [
+      'ClassicAddresses' => [
+        'request' => [
+          'operation' => 'DescribeAddresses',
+          'params' => [
+            [
+              'target' => 'Filters[0].Name',
+              'source' => 'string',
+              'value' => 'domain',
+            ],
+            [
+              'target' => 'Filters[0].Values[0]',
+              'source' => 'string',
+              'value' => 'standard',
+            ],
+          ],
+        ],
+        'resource' => [
+          'type' => 'ClassicAddress',
+          'identifiers' => [
+            [
+              'target' => 'PublicIp',
+              'source' => 'response',
+              'path' => 'Addresses[].PublicIp',
+            ],
+          ],
+          'path' => 'Addresses[]',
+        ],
+      ],
       'DhcpOptionsSets' => [
         'request' => [
           'operation' => 'DescribeDhcpOptions',
@@ -293,8 +479,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'DhcpOptions[].DhcpOptionsId',
+              'source' => 'response',
+              'path' => 'DhcpOptions[].DhcpOptionsId',
             ],
           ],
           'path' => 'DhcpOptions[]',
@@ -309,8 +495,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Images[].ImageId',
+              'source' => 'response',
+              'path' => 'Images[].ImageId',
             ],
           ],
           'path' => 'Images[]',
@@ -325,8 +511,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Reservations[].Instances[].InstanceId',
+              'source' => 'response',
+              'path' => 'Reservations[].Instances[].InstanceId',
             ],
           ],
           'path' => 'Reservations[].Instances[]',
@@ -341,8 +527,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'InternetGateways[].InternetGatewayId',
+              'source' => 'response',
+              'path' => 'InternetGateways[].InternetGatewayId',
             ],
           ],
           'path' => 'InternetGateways[]',
@@ -357,8 +543,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'KeyPairs[].KeyName',
+              'source' => 'response',
+              'path' => 'KeyPairs[].KeyName',
             ],
           ],
           'path' => 'KeyPairs[]',
@@ -373,8 +559,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'NetworkAcls[].NetworkAclId',
+              'source' => 'response',
+              'path' => 'NetworkAcls[].NetworkAclId',
             ],
           ],
           'path' => 'NetworkAcls[]',
@@ -389,8 +575,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'NetworkInterfaces[].NetworkInterfaceId',
+              'source' => 'response',
+              'path' => 'NetworkInterfaces[].NetworkInterfaceId',
             ],
           ],
           'path' => 'NetworkInterfaces[]',
@@ -405,8 +591,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'PlacementGroups[].GroupName',
+              'source' => 'response',
+              'path' => 'PlacementGroups[].GroupName',
             ],
           ],
           'path' => 'PlacementGroups[]',
@@ -421,8 +607,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'RouteTables[].RouteTableId',
+              'source' => 'response',
+              'path' => 'RouteTables[].RouteTableId',
             ],
           ],
           'path' => 'RouteTables[]',
@@ -437,8 +623,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'SecurityGroups[].GroupId',
+              'source' => 'response',
+              'path' => 'SecurityGroups[].GroupId',
             ],
           ],
           'path' => 'SecurityGroups[]',
@@ -453,8 +639,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Snapshots[].SnapshotId',
+              'source' => 'response',
+              'path' => 'Snapshots[].SnapshotId',
             ],
           ],
           'path' => 'Snapshots[]',
@@ -469,8 +655,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Subnets[].SubnetId',
+              'source' => 'response',
+              'path' => 'Subnets[].SubnetId',
             ],
           ],
           'path' => 'Subnets[]',
@@ -485,11 +671,39 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Volumes[].VolumeId',
+              'source' => 'response',
+              'path' => 'Volumes[].VolumeId',
             ],
           ],
           'path' => 'Volumes[]',
+        ],
+      ],
+      'VpcAddresses' => [
+        'request' => [
+          'operation' => 'DescribeAddresses',
+          'params' => [
+            [
+              'target' => 'Filters[0].Name',
+              'source' => 'string',
+              'value' => 'domain',
+            ],
+            [
+              'target' => 'Filters[0].Values[0]',
+              'source' => 'string',
+              'value' => 'vpc',
+            ],
+          ],
+        ],
+        'resource' => [
+          'type' => 'VpcAddress',
+          'identifiers' => [
+            [
+              'target' => 'AllocationId',
+              'source' => 'response',
+              'path' => 'Addresses[].AllocationId',
+            ],
+          ],
+          'path' => 'Addresses[]',
         ],
       ],
       'VpcPeeringConnections' => [
@@ -501,8 +715,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
+              'source' => 'response',
+              'path' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
             ],
           ],
           'path' => 'VpcPeeringConnections[]',
@@ -517,8 +731,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Vpcs[].VpcId',
+              'source' => 'response',
+              'path' => 'Vpcs[].VpcId',
             ],
           ],
           'path' => 'Vpcs[]',
@@ -527,6 +741,65 @@
     ],
   ],
   'resources' => [
+    'ClassicAddress' => [
+      'identifiers' => [
+        [
+          'name' => 'PublicIp',
+        ],
+      ],
+      'shape' => 'Address',
+      'load' => [
+        'request' => [
+          'operation' => 'DescribeAddresses',
+          'params' => [
+            [
+              'target' => 'PublicIp',
+              'source' => 'identifier',
+              'name' => 'PublicIp',
+            ],
+          ],
+        ],
+        'path' => 'Addresses[0]',
+      ],
+      'actions' => [
+        'Associate' => [
+          'request' => [
+            'operation' => 'AssociateAddress',
+            'params' => [
+              [
+                'target' => 'PublicIp',
+                'source' => 'identifier',
+                'name' => 'PublicIp',
+              ],
+            ],
+          ],
+        ],
+        'Disassociate' => [
+          'request' => [
+            'operation' => 'DisassociateAddress',
+            'params' => [
+              [
+                'target' => 'PublicIp',
+                'source' => 'data',
+                'path' => 'PublicIp',
+              ],
+            ],
+          ],
+        ],
+        'Release' => [
+          'request' => [
+            'operation' => 'ReleaseAddress',
+            'params' => [
+              [
+                'target' => 'PublicIp',
+                'source' => 'data',
+                'path' => 'PublicIp',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
     'DhcpOptions' => [
       'identifiers' => [
         [
@@ -541,8 +814,8 @@
           'params' => [
             [
               'target' => 'DhcpOptionsIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -555,8 +828,8 @@
             'params' => [
               [
                 'target' => 'DhcpOptionsId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -567,8 +840,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -577,18 +850,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -599,8 +872,8 @@
             'params' => [
               [
                 'target' => 'DhcpOptionsId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -621,8 +894,8 @@
           'params' => [
             [
               'target' => 'ImageIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -635,8 +908,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -645,18 +918,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -667,8 +940,8 @@
             'params' => [
               [
                 'target' => 'ImageId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -679,8 +952,8 @@
             'params' => [
               [
                 'target' => 'ImageId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -691,8 +964,8 @@
             'params' => [
               [
                 'target' => 'ImageId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -703,8 +976,8 @@
             'params' => [
               [
                 'target' => 'ImageId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -725,22 +998,34 @@
           'params' => [
             [
               'target' => 'InstanceIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
         'path' => 'Reservations[0].Instances[0]',
       ],
       'actions' => [
+        'AttachClassicLinkVpc' => [
+          'request' => [
+            'operation' => 'AttachClassicLinkVpc',
+            'params' => [
+              [
+                'target' => 'InstanceId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
         'AttachVolume' => [
           'request' => [
             'operation' => 'AttachVolume',
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -751,8 +1036,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -763,8 +1048,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -773,8 +1058,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'ImageId',
+                'source' => 'response',
+                'path' => 'ImageId',
               ],
             ],
           ],
@@ -785,8 +1070,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -795,18 +1080,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -817,8 +1102,20 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+        'DetachClassicLinkVpc' => [
+          'request' => [
+            'operation' => 'DetachClassicLinkVpc',
+            'params' => [
+              [
+                'target' => 'InstanceId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -829,8 +1126,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -841,8 +1138,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -853,8 +1150,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -865,8 +1162,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -877,8 +1174,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -889,8 +1186,8 @@
             'params' => [
               [
                 'target' => 'Instances[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -901,8 +1198,8 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -913,13 +1210,13 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Attribute',
-                'sourceType' => 'string',
-                'source' => 'kernel',
+                'source' => 'string',
+                'value' => 'kernel',
               ],
             ],
           ],
@@ -930,13 +1227,13 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Attribute',
-                'sourceType' => 'string',
-                'source' => 'ramdisk',
+                'source' => 'string',
+                'value' => 'ramdisk',
               ],
             ],
           ],
@@ -947,13 +1244,13 @@
             'params' => [
               [
                 'target' => 'InstanceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Attribute',
-                'sourceType' => 'string',
-                'source' => 'sourceDestCheck',
+                'source' => 'string',
+                'value' => 'sourceDestCheck',
               ],
             ],
           ],
@@ -964,8 +1261,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -976,8 +1273,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -988,8 +1285,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1000,8 +1297,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1014,8 +1311,8 @@
             'params' => [
               [
                 'target' => 'Resources[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1026,8 +1323,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1038,8 +1335,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1050,8 +1347,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1062,8 +1359,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1074,8 +1371,8 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1086,21 +1383,32 @@
             'params' => [
               [
                 'target' => 'InstanceIds[]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
       ],
       'waiters' => [
+        'Exists' => [
+          'waiterName' => 'InstanceExists',
+          'params' => [
+            [
+              'target' => 'InstanceIds[]',
+              'source' => 'identifier',
+              'name' => 'Id',
+            ],
+          ],
+          'path' => 'Reservations[0].Instances[0]',
+        ],
         'Running' => [
           'waiterName' => 'InstanceRunning',
           'params' => [
             [
               'target' => 'InstanceIds[]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
           'path' => 'Reservations[0].Instances[0]',
@@ -1110,8 +1418,8 @@
           'params' => [
             [
               'target' => 'InstanceIds[]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
           'path' => 'Reservations[0].Instances[0]',
@@ -1121,52 +1429,34 @@
           'params' => [
             [
               'target' => 'InstanceIds[]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
           'path' => 'Reservations[0].Instances[0]',
         ],
       ],
-      'hasMany' => [
-        'Volumes' => [
-          'request' => [
-            'operation' => 'DescribeVolumes',
-            'params' => [
-              [
-                'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'attachment.instance-id',
-              ],
-              [
-                'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
-              ],
-            ],
-          ],
+      'has' => [
+        'ClassicAddress' => [
           'resource' => [
-            'type' => 'Volume',
+            'type' => 'ClassicAddress',
             'identifiers' => [
               [
-                'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Volumes[].VolumeId',
+                'target' => 'PublicIp',
+                'source' => 'data',
+                'path' => 'PublicIpAddress',
               ],
             ],
-            'path' => 'Volumes[]',
           ],
         ],
-      ],
-      'belongsTo' => [
         'Image' => [
           'resource' => [
             'type' => 'Image',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'ImageId',
+                'source' => 'data',
+                'path' => 'ImageId',
               ],
             ],
           ],
@@ -1177,10 +1467,23 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'dataMember',
-                'source' => 'KeyName',
+                'source' => 'data',
+                'path' => 'KeyName',
               ],
             ],
+          ],
+        ],
+        'NetworkInterfaces' => [
+          'resource' => [
+            'type' => 'NetworkInterface',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'NetworkInterfaces[].NetworkInterfaceId',
+              ],
+            ],
+            'path' => 'NetworkInterfaces[]',
           ],
         ],
         'PlacementGroup' => [
@@ -1189,8 +1492,8 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'dataMember',
-                'source' => 'Placement.GroupName',
+                'source' => 'data',
+                'path' => 'Placement.GroupName',
               ],
             ],
           ],
@@ -1201,8 +1504,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'SubnetId',
+                'source' => 'data',
+                'path' => 'SubnetId',
               ],
             ],
           ],
@@ -1213,10 +1516,68 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VpcId',
+                'source' => 'data',
+                'path' => 'VpcId',
               ],
             ],
+          ],
+        ],
+      ],
+      'hasMany' => [
+        'Volumes' => [
+          'request' => [
+            'operation' => 'DescribeVolumes',
+            'params' => [
+              [
+                'target' => 'Filters[0].Name',
+                'source' => 'string',
+                'value' => 'attachment.instance-id',
+              ],
+              [
+                'target' => 'Filters[0].Values[0]',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Volume',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'response',
+                'path' => 'Volumes[].VolumeId',
+              ],
+            ],
+            'path' => 'Volumes[]',
+          ],
+        ],
+        'VpcAddresses' => [
+          'request' => [
+            'operation' => 'DescribeAddresses',
+            'params' => [
+              [
+                'target' => 'Filters[0].Name',
+                'source' => 'string',
+                'value' => 'instance-id',
+              ],
+              [
+                'target' => 'Filters[0].Values[0]',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'VpcAddress',
+            'identifiers' => [
+              [
+                'target' => 'AllocationId',
+                'source' => 'response',
+                'path' => 'Addresses[].AllocationId',
+              ],
+            ],
+            'path' => 'Addresses[]',
           ],
         ],
       ],
@@ -1235,8 +1596,8 @@
           'params' => [
             [
               'target' => 'InternetGatewayIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -1249,8 +1610,8 @@
             'params' => [
               [
                 'target' => 'InternetGatewayId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1261,8 +1622,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1271,18 +1632,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -1293,8 +1654,8 @@
             'params' => [
               [
                 'target' => 'InternetGatewayId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1305,8 +1666,8 @@
             'params' => [
               [
                 'target' => 'InternetGatewayId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1327,8 +1688,8 @@
           'params' => [
             [
               'target' => 'KeyNames[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -1341,8 +1702,8 @@
             'params' => [
               [
                 'target' => 'KeyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1363,8 +1724,8 @@
           'params' => [
             [
               'target' => 'NetworkAclIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -1377,8 +1738,8 @@
             'params' => [
               [
                 'target' => 'NetworkAclId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1389,8 +1750,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1399,18 +1760,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -1421,8 +1782,8 @@
             'params' => [
               [
                 'target' => 'NetworkAclId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1433,8 +1794,8 @@
             'params' => [
               [
                 'target' => 'NetworkAclId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1445,8 +1806,8 @@
             'params' => [
               [
                 'target' => 'NetworkAclId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1457,22 +1818,22 @@
             'params' => [
               [
                 'target' => 'NetworkAclId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
         'Vpc' => [
           'resource' => [
             'type' => 'Vpc',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VpcId',
+                'source' => 'data',
+                'path' => 'VpcId',
               ],
             ],
           ],
@@ -1493,8 +1854,8 @@
           'params' => [
             [
               'target' => 'NetworkInterfaceIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -1507,8 +1868,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1519,8 +1880,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1531,8 +1892,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1541,18 +1902,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -1563,8 +1924,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1575,8 +1936,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1587,8 +1948,8 @@
             'params' => [
               [
                 'target' => 'AttachmentId',
-                'sourceType' => 'dataMember',
-                'source' => 'Attachment.AttachmentId',
+                'source' => 'data',
+                'path' => 'Attachment.AttachmentId',
               ],
             ],
           ],
@@ -1599,8 +1960,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1611,8 +1972,8 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1623,22 +1984,35 @@
             'params' => [
               [
                 'target' => 'NetworkInterfaceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
+        'Association' => [
+          'resource' => [
+            'type' => 'NetworkInterfaceAssociation',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'Association.AssociationId',
+              ],
+            ],
+            'path' => 'Association',
+          ],
+        ],
         'Subnet' => [
           'resource' => [
             'type' => 'Subnet',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'SubnetId',
+                'source' => 'data',
+                'path' => 'SubnetId',
               ],
             ],
           ],
@@ -1649,8 +2023,44 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VpcId',
+                'source' => 'data',
+                'path' => 'VpcId',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'NetworkInterfaceAssociation' => [
+      'identifiers' => [
+        [
+          'name' => 'Id',
+        ],
+      ],
+      'shape' => 'InstanceNetworkInterfaceAssociation',
+      'actions' => [
+        'Delete' => [
+          'request' => [
+            'operation' => 'DisassociateAddress',
+            'params' => [
+              [
+                'target' => 'AssociationId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Address' => [
+          'resource' => [
+            'type' => 'VpcAddress',
+            'identifiers' => [
+              [
+                'target' => 'AllocationId',
+                'source' => 'data',
+                'path' => 'AllocationId',
               ],
             ],
           ],
@@ -1671,8 +2081,8 @@
           'params' => [
             [
               'target' => 'GroupNames[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -1685,8 +2095,8 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1699,13 +2109,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'placement-group-name',
+                'source' => 'string',
+                'value' => 'placement-group-name',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1714,8 +2124,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Reservations[].Instances[].InstanceId',
+                'source' => 'response',
+                'path' => 'Reservations[].Instances[].InstanceId',
               ],
             ],
             'path' => 'Reservations[].Instances[]',
@@ -1737,8 +2147,8 @@
           'params' => [
             [
               'target' => 'RouteTableIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -1751,8 +2161,8 @@
             'params' => [
               [
                 'target' => 'RouteTableId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1761,8 +2171,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'AssociationId',
+                'source' => 'response',
+                'path' => 'AssociationId',
               ],
             ],
           ],
@@ -1773,8 +2183,8 @@
             'params' => [
               [
                 'target' => 'RouteTableId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1785,8 +2195,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1795,18 +2205,44 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
+              ],
+            ],
+          ],
+        ],
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteRouteTable',
+            'params' => [
+              [
+                'target' => 'RouteTableId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vpc' => [
+          'resource' => [
+            'type' => 'Vpc',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'VpcId',
               ],
             ],
           ],
@@ -1819,8 +2255,8 @@
             'params' => [
               [
                 'target' => 'RouteTableIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1829,25 +2265,11 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'RouteTables[0].Associations[].RouteTableAssociationId',
+                'source' => 'response',
+                'path' => 'RouteTables[0].Associations[].RouteTableAssociationId',
               ],
             ],
             'path' => 'RouteTables[0].Associations[]',
-          ],
-        ],
-      ],
-      'belongsTo' => [
-        'Vpc' => [
-          'resource' => [
-            'type' => 'Vpc',
-            'identifiers' => [
-              [
-                'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VpcId',
-              ],
-            ],
           ],
         ],
       ],
@@ -1867,8 +2289,8 @@
             'params' => [
               [
                 'target' => 'AssociationId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1879,8 +2301,8 @@
             'params' => [
               [
                 'target' => 'AssociationId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1889,22 +2311,22 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NewAssociationId',
+                'source' => 'response',
+                'path' => 'NewAssociationId',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
         'RouteTable' => [
           'resource' => [
             'type' => 'RouteTable',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'RouteTableId',
+                'source' => 'data',
+                'path' => 'RouteTableId',
               ],
             ],
           ],
@@ -1915,8 +2337,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'SubnetId',
+                'source' => 'data',
+                'path' => 'SubnetId',
               ],
             ],
           ],
@@ -1937,8 +2359,8 @@
           'params' => [
             [
               'target' => 'GroupIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -1951,8 +2373,8 @@
             'params' => [
               [
                 'target' => 'GroupId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1963,8 +2385,8 @@
             'params' => [
               [
                 'target' => 'GroupId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1975,8 +2397,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -1985,18 +2407,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -2007,8 +2429,8 @@
             'params' => [
               [
                 'target' => 'GroupId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2019,8 +2441,8 @@
             'params' => [
               [
                 'target' => 'GroupId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2031,8 +2453,8 @@
             'params' => [
               [
                 'target' => 'GroupId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2053,8 +2475,8 @@
           'params' => [
             [
               'target' => 'SnapshotIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -2067,8 +2489,8 @@
             'params' => [
               [
                 'target' => 'SourceSnapshotId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2079,8 +2501,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2089,18 +2511,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -2111,8 +2533,8 @@
             'params' => [
               [
                 'target' => 'SnapshotId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2123,8 +2545,8 @@
             'params' => [
               [
                 'target' => 'SnapshotId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2135,8 +2557,8 @@
             'params' => [
               [
                 'target' => 'SnapshotId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2147,22 +2569,35 @@
             'params' => [
               [
                 'target' => 'SnapshotId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'waiters' => [
+        'Completed' => [
+          'waiterName' => 'SnapshotCompleted',
+          'params' => [
+            [
+              'target' => 'SnapshotIds[]',
+              'source' => 'identifier',
+              'name' => 'Id',
+            ],
+          ],
+          'path' => 'Snapshots[]',
+        ],
+      ],
+      'has' => [
         'Volume' => [
           'resource' => [
             'type' => 'Volume',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VolumeId',
+                'source' => 'data',
+                'path' => 'VolumeId',
               ],
             ],
           ],
@@ -2183,8 +2618,8 @@
           'params' => [
             [
               'target' => 'SubnetIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -2197,8 +2632,8 @@
             'params' => [
               [
                 'target' => 'SubnetId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2207,8 +2642,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Instances[].InstanceId',
+                'source' => 'response',
+                'path' => 'Instances[].InstanceId',
               ],
             ],
             'path' => 'Instances[]',
@@ -2220,8 +2655,8 @@
             'params' => [
               [
                 'target' => 'SubnetId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2230,8 +2665,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NetworkInterface.NetworkInterfaceId',
+                'source' => 'response',
+                'path' => 'NetworkInterface.NetworkInterfaceId',
               ],
             ],
             'path' => 'NetworkInterface',
@@ -2243,8 +2678,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2253,18 +2688,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -2275,8 +2710,22 @@
             'params' => [
               [
                 'target' => 'SubnetId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vpc' => [
+          'resource' => [
+            'type' => 'Vpc',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'VpcId',
               ],
             ],
           ],
@@ -2289,13 +2738,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'subnet-id',
+                'source' => 'string',
+                'value' => 'subnet-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2304,8 +2753,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Reservations[].Instances[].InstanceId',
+                'source' => 'response',
+                'path' => 'Reservations[].Instances[].InstanceId',
               ],
             ],
             'path' => 'Reservations[].Instances[]',
@@ -2317,13 +2766,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'subnet-id',
+                'source' => 'string',
+                'value' => 'subnet-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2332,25 +2781,11 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NetworkInterfaces[].NetworkInterfaceId',
+                'source' => 'response',
+                'path' => 'NetworkInterfaces[].NetworkInterfaceId',
               ],
             ],
             'path' => 'NetworkInterfaces[]',
-          ],
-        ],
-      ],
-      'belongsTo' => [
-        'Vpc' => [
-          'resource' => [
-            'type' => 'Vpc',
-            'identifiers' => [
-              [
-                'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'VpcId',
-              ],
-            ],
           ],
         ],
       ],
@@ -2377,23 +2812,23 @@
           'params' => [
             [
               'target' => 'Filters[0].Name',
-              'sourceType' => 'string',
-              'source' => 'key',
+              'source' => 'string',
+              'value' => 'key',
             ],
             [
               'target' => 'Filters[0].Values[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Key',
+              'source' => 'identifier',
+              'name' => 'Key',
             ],
             [
               'target' => 'Filters[1].Name',
-              'sourceType' => 'string',
-              'source' => 'value',
+              'source' => 'string',
+              'value' => 'value',
             ],
             [
               'target' => 'Filters[1].Values[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Value',
+              'source' => 'identifier',
+              'name' => 'Value',
             ],
           ],
         ],
@@ -2406,18 +2841,18 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'ResourceId',
+                'source' => 'identifier',
+                'name' => 'ResourceId',
               ],
               [
                 'target' => 'Tags[0].Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
               [
                 'target' => 'Tags[0].Value',
-                'sourceType' => 'identifier',
-                'source' => 'Value',
+                'source' => 'identifier',
+                'name' => 'Value',
               ],
             ],
           ],
@@ -2430,18 +2865,18 @@
             'params' => [
               [
                 'target' => 'Resources[]',
-                'sourceType' => 'identifier',
-                'source' => 'ResourceId',
+                'source' => 'identifier',
+                'name' => 'ResourceId',
               ],
               [
                 'target' => 'Tags[*].Key',
-                'sourceType' => 'identifier',
-                'source' => 'Key',
+                'source' => 'identifier',
+                'name' => 'Key',
               ],
               [
                 'target' => 'Tags[*].Value',
-                'sourceType' => 'identifier',
-                'source' => 'Value',
+                'source' => 'identifier',
+                'name' => 'Value',
               ],
             ],
           ],
@@ -2462,8 +2897,8 @@
           'params' => [
             [
               'target' => 'VolumeIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -2476,8 +2911,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2488,8 +2923,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2498,11 +2933,11 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'SnapshotId',
+                'source' => 'response',
+                'path' => 'SnapshotId',
               ],
             ],
-            'path' => '$',
+            'path' => '@',
           ],
         ],
         'CreateTags' => [
@@ -2511,8 +2946,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2521,18 +2956,30 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
+              ],
+            ],
+          ],
+        ],
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteVolume',
+            'params' => [
+              [
+                'target' => 'VolumeId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2543,8 +2990,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2555,8 +3002,8 @@
             'params' => [
               [
                 'target' => 'VolumeIds[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2567,8 +3014,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2579,8 +3026,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2591,8 +3038,8 @@
             'params' => [
               [
                 'target' => 'VolumeId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2605,13 +3052,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'volume-id',
+                'source' => 'string',
+                'value' => 'volume-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2620,8 +3067,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Snapshots[].SnapshotId',
+                'source' => 'response',
+                'path' => 'Snapshots[].SnapshotId',
               ],
             ],
             'path' => 'Snapshots[]',
@@ -2643,8 +3090,8 @@
           'params' => [
             [
               'target' => 'VpcIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -2657,8 +3104,20 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+        'AttachClassicLinkInstance' => [
+          'request' => [
+            'operation' => 'AttachClassicLinkVpc',
+            'params' => [
+              [
+                'target' => 'VpcId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2669,8 +3128,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2681,8 +3140,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2691,8 +3150,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NetworkAcl.NetworkAclId',
+                'source' => 'response',
+                'path' => 'NetworkAcl.NetworkAclId',
               ],
             ],
             'path' => 'NetworkAcl',
@@ -2704,8 +3163,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2714,8 +3173,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'RouteTable.RouteTableId',
+                'source' => 'response',
+                'path' => 'RouteTable.RouteTableId',
               ],
             ],
             'path' => 'RouteTable',
@@ -2727,8 +3186,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2737,8 +3196,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'GroupId',
+                'source' => 'response',
+                'path' => 'GroupId',
               ],
             ],
           ],
@@ -2749,8 +3208,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2759,8 +3218,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Subnet.SubnetId',
+                'source' => 'response',
+                'path' => 'Subnet.SubnetId',
               ],
             ],
             'path' => 'Subnet',
@@ -2772,8 +3231,8 @@
             'params' => [
               [
                 'target' => 'Resources[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2782,18 +3241,18 @@
             'identifiers' => [
               [
                 'target' => 'ResourceId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Key',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Key',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Key',
               ],
               [
                 'target' => 'Value',
-                'sourceType' => 'requestParameter',
-                'source' => 'Tags[].Value',
+                'source' => 'requestParameter',
+                'path' => 'Tags[].Value',
               ],
             ],
           ],
@@ -2804,8 +3263,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2816,8 +3275,20 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+        'DetachClassicLinkInstance' => [
+          'request' => [
+            'operation' => 'DetachClassicLinkVpc',
+            'params' => [
+              [
+                'target' => 'VpcId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2828,8 +3299,32 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+        'DisableClassicLink' => [
+          'request' => [
+            'operation' => 'DisableVpcClassicLink',
+            'params' => [
+              [
+                'target' => 'VpcId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+        'EnableClassicLink' => [
+          'request' => [
+            'operation' => 'EnableVpcClassicLink',
+            'params' => [
+              [
+                'target' => 'VpcId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2840,8 +3335,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2852,8 +3347,8 @@
             'params' => [
               [
                 'target' => 'VpcId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2862,11 +3357,25 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'VpcPeeringConnection.VpcPeeringConnectionId',
+                'source' => 'response',
+                'path' => 'VpcPeeringConnection.VpcPeeringConnectionId',
               ],
             ],
             'path' => 'VpcPeeringConnection',
+          ],
+        ],
+      ],
+      'has' => [
+        'DhcpOptions' => [
+          'resource' => [
+            'type' => 'DhcpOptions',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'DhcpOptionsId',
+              ],
+            ],
           ],
         ],
       ],
@@ -2877,13 +3386,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'accepter-vpc-info.vpc-id',
+                'source' => 'string',
+                'value' => 'accepter-vpc-info.vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2892,8 +3401,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
+                'source' => 'response',
+                'path' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
               ],
             ],
             'path' => 'VpcPeeringConnections[]',
@@ -2905,13 +3414,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2920,8 +3429,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Reservations[].Instances[].InstanceId',
+                'source' => 'response',
+                'path' => 'Reservations[].Instances[].InstanceId',
               ],
             ],
             'path' => 'Reservations[].Instances[]',
@@ -2933,13 +3442,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'attachment.vpc-id',
+                'source' => 'string',
+                'value' => 'attachment.vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2948,8 +3457,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'InternetGateways[].InternetGatewayId',
+                'source' => 'response',
+                'path' => 'InternetGateways[].InternetGatewayId',
               ],
             ],
             'path' => 'InternetGateways[]',
@@ -2961,13 +3470,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -2976,8 +3485,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NetworkAcls[].NetworkAclId',
+                'source' => 'response',
+                'path' => 'NetworkAcls[].NetworkAclId',
               ],
             ],
             'path' => 'NetworkAcls[]',
@@ -2989,13 +3498,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3004,8 +3513,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'NetworkInterfaces[].NetworkInterfaceId',
+                'source' => 'response',
+                'path' => 'NetworkInterfaces[].NetworkInterfaceId',
               ],
             ],
             'path' => 'NetworkInterfaces[]',
@@ -3017,13 +3526,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'requester-vpc-info.vpc-id',
+                'source' => 'string',
+                'value' => 'requester-vpc-info.vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3032,8 +3541,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
+                'source' => 'response',
+                'path' => 'VpcPeeringConnections[].VpcPeeringConnectionId',
               ],
             ],
             'path' => 'VpcPeeringConnections[]',
@@ -3045,13 +3554,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3060,8 +3569,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'RouteTables[].RouteTableId',
+                'source' => 'response',
+                'path' => 'RouteTables[].RouteTableId',
               ],
             ],
             'path' => 'RouteTables[]',
@@ -3073,13 +3582,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3088,8 +3597,8 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'SecurityGroups[].GroupId',
+                'source' => 'response',
+                'path' => 'SecurityGroups[].GroupId',
               ],
             ],
             'path' => 'SecurityGroups[]',
@@ -3101,13 +3610,13 @@
             'params' => [
               [
                 'target' => 'Filters[0].Name',
-                'sourceType' => 'string',
-                'source' => 'vpc-id',
+                'source' => 'string',
+                'value' => 'vpc-id',
               ],
               [
                 'target' => 'Filters[0].Values[0]',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3116,25 +3625,11 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'Subnets[].SubnetId',
+                'source' => 'response',
+                'path' => 'Subnets[].SubnetId',
               ],
             ],
             'path' => 'Subnets[]',
-          ],
-        ],
-      ],
-      'belongsTo' => [
-        'DhcpOptions' => [
-          'resource' => [
-            'type' => 'DhcpOptions',
-            'identifiers' => [
-              [
-                'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'DhcpOptionsId',
-              ],
-            ],
           ],
         ],
       ],
@@ -3153,8 +3648,8 @@
           'params' => [
             [
               'target' => 'VpcPeeringConnectionIds[0]',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
@@ -3167,8 +3662,8 @@
             'params' => [
               [
                 'target' => 'VpcPeeringConnectionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3179,8 +3674,8 @@
             'params' => [
               [
                 'target' => 'VpcPeeringConnectionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -3191,22 +3686,22 @@
             'params' => [
               [
                 'target' => 'VpcPeeringConnectionId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
         'AccepterVpc' => [
           'resource' => [
             'type' => 'Vpc',
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'AccepterVpcInfo.VpcId',
+                'source' => 'data',
+                'path' => 'AccepterVpcInfo.VpcId',
               ],
             ],
           ],
@@ -3217,8 +3712,69 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'dataMember',
-                'source' => 'RequesterVpcInfo.VpcId',
+                'source' => 'data',
+                'path' => 'RequesterVpcInfo.VpcId',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'VpcAddress' => [
+      'identifiers' => [
+        [
+          'name' => 'AllocationId',
+        ],
+      ],
+      'shape' => 'Address',
+      'load' => [
+        'request' => [
+          'operation' => 'DescribeAddresses',
+          'params' => [
+            [
+              'target' => 'AllocationIds[0]',
+              'source' => 'identifier',
+              'name' => 'AllocationId',
+            ],
+          ],
+        ],
+        'path' => 'Addresses[0]',
+      ],
+      'actions' => [
+        'Associate' => [
+          'request' => [
+            'operation' => 'AssociateAddress',
+            'params' => [
+              [
+                'target' => 'AllocationId',
+                'source' => 'identifier',
+                'name' => 'AllocationId',
+              ],
+            ],
+          ],
+        ],
+        'Release' => [
+          'request' => [
+            'operation' => 'ReleaseAddress',
+            'params' => [
+              [
+                'target' => 'AllocationId',
+                'source' => 'data',
+                'path' => 'AllocationId',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Association' => [
+          'resource' => [
+            'type' => 'NetworkInterfaceAssociation',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'AssociationId',
               ],
             ],
           ],

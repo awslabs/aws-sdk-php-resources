@@ -91,7 +91,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([], $data);
     }
 
-    public function testCreatingSubresourceUsesDataFromParentAndProvidedArgs()
+    public function testCreatingRelatedResourceUsesDataFromParentAndProvidedArgs()
     {
         $rc = new ResourceClient(
             $this->getTestClient('s3'),
@@ -99,7 +99,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         );
 
         $parent = new Resource($rc, 'Bucket', ['Name' => 'foo']);
-        $resource = $rc->makeSubResource('Object', ['bar'], $parent);
+        $resource = $rc->makeRelated('Object', ['bar'], $parent);
 
         $this->assertEquals('Object', $resource->getType());
         $this->assertEquals(
@@ -112,7 +112,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
      * @expectedException \InvalidArgumentException
      * @expectedExceptionMessage Invalid identity.
      */
-    public function testCreatingSubresourceFailsWhenMissingIdentityParts()
+    public function testCreatingRelatedResourceFailsWhenMissingIdentityParts()
     {
         $rc = new ResourceClient(
             $this->getTestClient('s3'),
@@ -120,10 +120,10 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         );
 
         $parent = new Resource($rc, 'Bucket', ['Name' => 'foo']);
-        $resource = $rc->makeSubResource('Object', [], $parent);
+        $resource = $rc->makeRelated('Object', [], $parent);
     }
 
-    public function testAccessingABelongsToRelationshipReturnsNewResource()
+    public function testCreatingRelatedResourceReturnsNewResourceForBelongsToTypeRelationship()
     {
         $rc = new ResourceClient(
             $this->getTestClient('iam'),
@@ -143,13 +143,13 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
             ]
         );
 
-        $resource = $rc->makeBelongsToResource('User', [], $parent);
+        $resource = $rc->makeRelated('User', [], $parent);
 
         $this->assertInstanceOf('Aws\Resource\Resource', $resource);
         $this->assertEquals(['Name' => 'a'], $resource->getIdentity());
     }
 
-    public function testResolvingABelongsToMultiRelationshipReturnsABatch()
+    public function testCreatingRelatedResourceWithMultiRelationshipReturnsABatch()
     {
         $rc = new ResourceClient(
             $this->getTestClient('iam'),
@@ -167,7 +167,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
             ]]
         );
 
-        $resources = $rc->makeBelongsToResource('Roles', [], $parent);
+        $resources = $rc->makeRelated('Roles', [], $parent);
 
         $this->assertInstanceOf('Aws\Resource\Batch', $resources);
 

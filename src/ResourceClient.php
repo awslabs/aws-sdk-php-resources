@@ -54,31 +54,23 @@ class ResourceClient
         return [];
     }
 
-    public function makeSubResource($name, array $args, Resource $parent)
+    public function makeRelated($name, array $args, Resource $parent)
     {
-        return new Resource($this, $name, $this->createIdentityForSubResource(
-            $parent->getIdentity(),
-            $this->model->search('identifiersList', $name) ?: [],
-            $args,
-            $this->model->search('subResourcesIds', $parent->getType()) ?: []
-        ));
-    }
 
-    /**
-     * @param string   $name
-     * @param array    $args
-     * @param Resource $parent
-     *
-     * @return Resource|Batch
-     */
-    public function makeBelongsToResource($name, array $args, Resource $parent)
-    {
-        $resource = $this->model->search('belongsTo', $parent->getType(), $name);
+        $resource = $this->model->search('related', $parent->getType(), $name);
 
         $id = $this->createIdentityForRelatedResource(
             $resource['identifiers'],
-            function (array $param) use ($parent) {
-                return $this->resolveValue($param, $parent);
+            function (array $param) use ($parent, &$args) {
+                $value = ($param['source'] === 'input')
+                    ? array_shift($args)
+                    : $this->resolveValue($param, $parent);
+
+                if ($value === null) {
+                    throw new \InvalidArgumentException('Invalid identity.');
+                }
+
+                return $value;
             }
         );
 
@@ -242,31 +234,31 @@ class ResourceClient
         Command $command = null,
         ResultInterface $result = null
     ) {
-        switch ($param['sourceType']) {
+        switch ($param['source']) {
             // Source is pulled from the resource's identifier.
             case 'identifier':
                 $id = $resource->getIdentity();
-                return isset($id[$param['source']])
-                    ? $id[$param['source']]
+                return isset($id[$param['name']])
+                    ? $id[$param['name']]
                     : null;
             // Source is pulled from the resource's data.
-            case 'dataMember':
-                return jp\search($param['source'], $resource);
+            case 'data':
+                return jp\search($param['path'], $resource);
             // Source is pulled from the command parameters.
             case 'requestParameter':
-                return $command[$param['source']];
+                return $command[$param['path']];
             // Source is pulled from the result.
-            case 'responsePath':
-                return $result ? $result->search($param['source']) : null;
+            case 'response':
+                return $result ? $result->search($param['path']) : null;
             // Source is a literal value from the resource model.
             case 'string':
             case 'integer':
             case 'boolean':
-                return $param['source'];
+                return $param['value'];
             // Invalid source type.
             default:
                 throw new \InvalidArgumentException('The value "'
-                    . $param['sourceType'] . '" is an invalid for sourceType.');
+                    . $param['source'] . '" is an invalid for source.');
         }
     }
 
@@ -317,33 +309,6 @@ class ResourceClient
 
         // Finally, set the value.
         $cursor = $value;
-    }
-
-    private function createIdentityForSubResource(
-        array $parentId,
-        array $identifiers,
-        array $newParts = [],
-        array $renames = []
-    ) {
-        if (count($identifiers) !== (count($parentId) + count($newParts))) {
-            throw new \InvalidArgumentException('Invalid identity.');
-        }
-
-        $id = [];
-
-        // Get the identity parts from the parent and apply any renames.
-        foreach ($parentId as $key => $value) {
-            $id[isset($renames[$key]) ? $renames[$key] : $key] = $value;
-        }
-
-        // Fill in remaining identity parts from the provided new parts.
-        foreach ($identifiers as $identifier) {
-            if (!isset($id[$identifier])) {
-                $id[$identifier] = array_shift($newParts);
-            }
-        }
-
-        return $id;
     }
 
     public function createIdentityForRelatedResource(

@@ -17,7 +17,7 @@ class ModelTest extends \PHPUnit_Framework_TestCase
 
         $service = $model->search('service');
         $this->assertArrayHasKey('_meta', $service);
-        $this->assertArrayHasKey('subResources', $service);
+        $this->assertArrayHasKey('has', $service);
         $this->assertArrayHasKey('_meta', $model->search('resources.Bucket'));
     }
 }

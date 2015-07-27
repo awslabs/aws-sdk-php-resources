@@ -7,8 +7,8 @@
           'params' => [
             [
               'target' => 'accountId',
-              'sourceType' => 'string',
-              'source' => '-',
+              'source' => 'string',
+              'value' => '-',
             ],
           ],
         ],
@@ -17,13 +17,26 @@
           'identifiers' => [
             [
               'target' => 'AccountId',
-              'sourceType' => 'requestParameter',
-              'source' => 'accountId',
+              'source' => 'requestParameter',
+              'path' => 'accountId',
             ],
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'vaultName',
+              'source' => 'requestParameter',
+              'path' => 'vaultName',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'has' => [
+      'Account' => [
+        'resource' => [
+          'type' => 'Account',
+          'identifiers' => [
+            [
+              'target' => 'Id',
+              'source' => 'input',
             ],
           ],
         ],
@@ -36,8 +49,8 @@
           'params' => [
             [
               'target' => 'accountId',
-              'sourceType' => 'string',
-              'source' => '-',
+              'source' => 'string',
+              'value' => '-',
             ],
           ],
         ],
@@ -46,13 +59,13 @@
           'identifiers' => [
             [
               'target' => 'AccountId',
-              'sourceType' => 'requestParameter',
-              'source' => 'accountId',
+              'source' => 'requestParameter',
+              'path' => 'accountId',
             ],
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'VaultList[].VaultName',
+              'source' => 'response',
+              'path' => 'VaultList[].VaultName',
             ],
           ],
           'path' => 'VaultList[]',
@@ -71,19 +84,44 @@
         'CreateVault' => [
           'request' => [
             'operation' => 'CreateVault',
+            'params' => [
+              [
+                'target' => 'accountId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
           ],
           'resource' => [
             'type' => 'Vault',
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'vaultName',
+                'source' => 'requestParameter',
+                'path' => 'vaultName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vault' => [
+          'resource' => [
+            'type' => 'Vault',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'input',
               ],
             ],
           ],
@@ -99,25 +137,17 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'requestParameter',
-                'source' => 'accountId',
+                'source' => 'requestParameter',
+                'path' => 'accountId',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'VaultList[].VaultName',
+                'source' => 'response',
+                'path' => 'VaultList[].VaultName',
               ],
             ],
             'path' => 'VaultList[]',
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'Vault',
-        ],
-        'identifiers' => [
-          'Id' => 'AccountId',
         ],
       ],
     ],
@@ -140,45 +170,45 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'archiveId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
         ],
-        'InitiateArchiveRetreival' => [
+        'InitiateArchiveRetrieval' => [
           'request' => [
             'operation' => 'InitiateJob',
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'jobParameters.Type',
-                'sourceType' => 'string',
-                'source' => 'archive-retrieval',
+                'source' => 'string',
+                'value' => 'archive-retrieval',
               ],
               [
                 'target' => 'jobParameters.ArchiveId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -187,18 +217,37 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'jobId',
+                'source' => 'response',
+                'path' => 'jobId',
               ],
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vault' => [
+          'resource' => [
+            'type' => 'Vault',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
             ],
           ],
@@ -225,22 +274,22 @@
           'params' => [
             [
               'target' => 'accountId',
-              'sourceType' => 'identifier',
-              'source' => 'AccountId',
+              'source' => 'identifier',
+              'name' => 'AccountId',
             ],
             [
               'target' => 'vaultName',
-              'sourceType' => 'identifier',
-              'source' => 'VaultName',
+              'source' => 'identifier',
+              'name' => 'VaultName',
             ],
             [
               'target' => 'jobId',
-              'sourceType' => 'identifier',
-              'source' => 'Id',
+              'source' => 'identifier',
+              'name' => 'Id',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'GetOutput' => [
@@ -249,18 +298,37 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'jobId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vault' => [
+          'resource' => [
+            'type' => 'Vault',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
             ],
           ],
@@ -288,18 +356,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'uploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -310,18 +378,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'uploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -332,18 +400,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'uploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -354,18 +422,37 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
               [
                 'target' => 'uploadId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vault' => [
+          'resource' => [
+            'type' => 'Vault',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
             ],
           ],
@@ -388,13 +475,13 @@
           'params' => [
             [
               'target' => 'accountId',
-              'sourceType' => 'identifier',
-              'source' => 'AccountId',
+              'source' => 'identifier',
+              'name' => 'AccountId',
             ],
             [
               'target' => 'vaultName',
-              'sourceType' => 'identifier',
-              'source' => 'VaultName',
+              'source' => 'identifier',
+              'name' => 'VaultName',
             ],
           ],
         ],
@@ -407,13 +494,13 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
             ],
           ],
@@ -424,13 +511,32 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'VaultName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Vault' => [
+          'resource' => [
+            'type' => 'Vault',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'VaultName',
               ],
             ],
           ],
@@ -454,17 +560,17 @@
           'params' => [
             [
               'target' => 'vaultName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
             [
               'target' => 'accountId',
-              'sourceType' => 'identifier',
-              'source' => 'AccountId',
+              'source' => 'identifier',
+              'name' => 'AccountId',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Create' => [
@@ -473,13 +579,13 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
             ],
           ],
@@ -490,13 +596,13 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
             ],
           ],
@@ -507,18 +613,18 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'jobParameters.Type',
-                'sourceType' => 'string',
-                'source' => 'inventory-retrieval',
+                'source' => 'string',
+                'value' => 'inventory-retrieval',
               ],
             ],
           ],
@@ -527,18 +633,18 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'jobId',
+                'source' => 'response',
+                'path' => 'jobId',
               ],
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -549,13 +655,13 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
             ],
           ],
@@ -564,18 +670,18 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'uploadId',
+                'source' => 'response',
+                'path' => 'uploadId',
               ],
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -586,13 +692,13 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
             ],
           ],
@@ -601,18 +707,112 @@
             'identifiers' => [
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'archiveId',
+                'source' => 'response',
+                'path' => 'archiveId',
               ],
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Account' => [
+          'resource' => [
+            'type' => 'Account',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+            ],
+          ],
+        ],
+        'Archive' => [
+          'resource' => [
+            'type' => 'Archive',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Job' => [
+          'resource' => [
+            'type' => 'Job',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'MultipartUpload' => [
+          'resource' => [
+            'type' => 'MultipartUpload',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Notification' => [
+          'resource' => [
+            'type' => 'Notification',
+            'identifiers' => [
+              [
+                'target' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
+              ],
+              [
+                'target' => 'VaultName',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -625,18 +825,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'completed',
-                'sourceType' => 'string',
-                'source' => 'true',
+                'source' => 'string',
+                'value' => 'true',
               ],
             ],
           ],
@@ -645,18 +845,18 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'JobList[].JobId',
+                'source' => 'response',
+                'path' => 'JobList[].JobId',
               ],
             ],
             'path' => 'JobList[]',
@@ -668,18 +868,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'statuscode',
-                'sourceType' => 'string',
-                'source' => 'Failed',
+                'source' => 'string',
+                'value' => 'Failed',
               ],
             ],
           ],
@@ -688,18 +888,18 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'JobList[].JobId',
+                'source' => 'response',
+                'path' => 'JobList[].JobId',
               ],
             ],
             'path' => 'JobList[]',
@@ -711,13 +911,13 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -726,18 +926,18 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'JobList[].JobId',
+                'source' => 'response',
+                'path' => 'JobList[].JobId',
               ],
             ],
             'path' => 'JobList[]',
@@ -749,18 +949,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'statuscode',
-                'sourceType' => 'string',
-                'source' => 'InProgress',
+                'source' => 'string',
+                'value' => 'InProgress',
               ],
             ],
           ],
@@ -769,18 +969,18 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'JobList[].JobId',
+                'source' => 'response',
+                'path' => 'JobList[].JobId',
               ],
             ],
             'path' => 'JobList[]',
@@ -792,13 +992,13 @@
             'params' => [
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
             ],
           ],
@@ -807,18 +1007,18 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'UploadsList[].MultipartUploadId',
+                'source' => 'response',
+                'path' => 'UploadsList[].MultipartUploadId',
               ],
             ],
             'path' => 'UploadsList[]',
@@ -830,18 +1030,18 @@
             'params' => [
               [
                 'target' => 'accountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'vaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'statuscode',
-                'sourceType' => 'string',
-                'source' => 'Succeeded',
+                'source' => 'string',
+                'value' => 'Succeeded',
               ],
             ],
           ],
@@ -850,34 +1050,22 @@
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'sourceType' => 'identifier',
-                'source' => 'AccountId',
+                'source' => 'identifier',
+                'name' => 'AccountId',
               ],
               [
                 'target' => 'VaultName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'JobList[].JobId',
+                'source' => 'response',
+                'path' => 'JobList[].JobId',
               ],
             ],
             'path' => 'JobList[]',
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'Notification',
-          'Job',
-          'Archive',
-          'MultipartUpload',
-        ],
-        'identifiers' => [
-          'AccountId' => 'AccountId',
-          'Name' => 'VaultName',
         ],
       ],
     ],

@@ -10,16 +10,6 @@
         'request' => [
           'operation' => 'CreateAccountAlias',
         ],
-        'resource' => [
-          'type' => 'AccountAlias',
-          'identifiers' => [
-            [
-              'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'AccountAlias',
-            ],
-          ],
-        ],
       ],
       'CreateAccountPasswordPolicy' => [
         'request' => [
@@ -40,8 +30,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'GroupName',
+              'source' => 'requestParameter',
+              'path' => 'GroupName',
             ],
           ],
           'path' => 'Group',
@@ -56,11 +46,26 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'InstanceProfileName',
+              'source' => 'requestParameter',
+              'path' => 'InstanceProfileName',
             ],
           ],
           'path' => 'InstanceProfile',
+        ],
+      ],
+      'CreatePolicy' => [
+        'request' => [
+          'operation' => 'CreatePolicy',
+        ],
+        'resource' => [
+          'type' => 'Policy',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'response',
+              'path' => 'Policy.Arn',
+            ],
+          ],
         ],
       ],
       'CreateRole' => [
@@ -72,8 +77,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'RoleName',
+              'source' => 'requestParameter',
+              'path' => 'RoleName',
             ],
           ],
           'path' => 'Role',
@@ -88,8 +93,8 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'SAMLProviderArn',
+              'source' => 'response',
+              'path' => 'SAMLProviderArn',
             ],
           ],
         ],
@@ -103,8 +108,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'ServerCertificateName',
+              'source' => 'requestParameter',
+              'path' => 'ServerCertificateName',
             ],
           ],
         ],
@@ -118,8 +123,8 @@
           'identifiers' => [
             [
               'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Certificate.CertificateId',
+              'source' => 'response',
+              'path' => 'Certificate.CertificateId',
             ],
           ],
           'path' => 'Certificate',
@@ -134,8 +139,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'requestParameter',
-              'source' => 'UserName',
+              'source' => 'requestParameter',
+              'path' => 'UserName',
             ],
           ],
           'path' => 'User',
@@ -150,30 +155,126 @@
           'identifiers' => [
             [
               'target' => 'SerialNumber',
-              'sourceType' => 'responsePath',
-              'source' => 'VirtualMFADevice.SerialNumber',
+              'source' => 'response',
+              'path' => 'VirtualMFADevice.SerialNumber',
             ],
           ],
           'path' => 'VirtualMFADevice',
         ],
       ],
     ],
-    'hasMany' => [
-      'AccountAliases' => [
-        'request' => [
-          'operation' => 'ListAccountAliases',
-        ],
+    'has' => [
+      'AccountPasswordPolicy' => [
         'resource' => [
-          'type' => 'AccountAlias',
+          'type' => 'AccountPasswordPolicy',
+          'identifiers' => [
+          ],
+        ],
+      ],
+      'AccountSummary' => [
+        'resource' => [
+          'type' => 'AccountSummary',
+          'identifiers' => [
+          ],
+        ],
+      ],
+      'CurrentUser' => [
+        'resource' => [
+          'type' => 'CurrentUser',
+          'identifiers' => [
+          ],
+        ],
+      ],
+      'Group' => [
+        'resource' => [
+          'type' => 'Group',
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'AccountAliases[]',
+              'source' => 'input',
             ],
           ],
         ],
       ],
+      'InstanceProfile' => [
+        'resource' => [
+          'type' => 'InstanceProfile',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Policy' => [
+        'resource' => [
+          'type' => 'Policy',
+          'identifiers' => [
+            [
+              'target' => 'PolicyArn',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Role' => [
+        'resource' => [
+          'type' => 'Role',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'SamlProvider' => [
+        'resource' => [
+          'type' => 'SamlProvider',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'ServerCertificate' => [
+        'resource' => [
+          'type' => 'ServerCertificate',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'User' => [
+        'resource' => [
+          'type' => 'User',
+          'identifiers' => [
+            [
+              'target' => 'Name',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'VirtualMfaDevice' => [
+        'resource' => [
+          'type' => 'VirtualMfaDevice',
+          'identifiers' => [
+            [
+              'target' => 'SerialNumber',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'hasMany' => [
       'Groups' => [
         'request' => [
           'operation' => 'ListGroups',
@@ -183,8 +284,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'Groups[].GroupName',
+              'source' => 'response',
+              'path' => 'Groups[].GroupName',
             ],
           ],
           'path' => 'Groups[]',
@@ -199,11 +300,27 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'InstanceProfiles[].InstanceProfileName',
+              'source' => 'response',
+              'path' => 'InstanceProfiles[].InstanceProfileName',
             ],
           ],
           'path' => 'InstanceProfiles[]',
+        ],
+      ],
+      'Policies' => [
+        'request' => [
+          'operation' => 'ListPolicies',
+        ],
+        'resource' => [
+          'type' => 'Policy',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'response',
+              'path' => 'Policies[].Arn',
+            ],
+          ],
+          'path' => 'Policies[]',
         ],
       ],
       'Roles' => [
@@ -215,8 +332,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'Roles[].RoleName',
+              'source' => 'response',
+              'path' => 'Roles[].RoleName',
             ],
           ],
           'path' => 'Roles[]',
@@ -231,8 +348,8 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'SAMLProviderList[].Arn',
+              'source' => 'response',
+              'path' => 'SAMLProviderList[].Arn',
             ],
           ],
         ],
@@ -246,26 +363,10 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'ServerCertificateMetadataList[].ServerCertificateName',
+              'source' => 'response',
+              'path' => 'ServerCertificateMetadataList[].ServerCertificateName',
             ],
           ],
-        ],
-      ],
-      'SigningCertificates' => [
-        'request' => [
-          'operation' => 'ListSigningCertificates',
-        ],
-        'resource' => [
-          'type' => 'SigningCertificate',
-          'identifiers' => [
-            [
-              'target' => 'Id',
-              'sourceType' => 'responsePath',
-              'source' => 'Certificates[].CertificateId',
-            ],
-          ],
-          'path' => 'Certificates[]',
         ],
       ],
       'Users' => [
@@ -277,8 +378,8 @@
           'identifiers' => [
             [
               'target' => 'Name',
-              'sourceType' => 'responsePath',
-              'source' => 'Users[].UserName',
+              'source' => 'response',
+              'path' => 'Users[].UserName',
             ],
           ],
           'path' => 'Users[]',
@@ -293,8 +394,8 @@
           'identifiers' => [
             [
               'target' => 'SerialNumber',
-              'sourceType' => 'responsePath',
-              'source' => 'VirtualMFADevices[].SerialNumber',
+              'source' => 'response',
+              'path' => 'VirtualMFADevices[].SerialNumber',
             ],
           ],
           'path' => 'VirtualMFADevices[]',
@@ -314,7 +415,7 @@
           'memberName' => 'AccessKeyId',
         ],
       ],
-      'shape' => 'AccessKey',
+      'shape' => 'AccessKeyMetadata',
       'actions' => [
         'Activate' => [
           'request' => [
@@ -322,18 +423,18 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'AccessKeyId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Status',
-                'sourceType' => 'string',
-                'source' => 'Active',
+                'source' => 'string',
+                'value' => 'Active',
               ],
             ],
           ],
@@ -344,18 +445,18 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'AccessKeyId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Status',
-                'sourceType' => 'string',
-                'source' => 'Inactive',
+                'source' => 'string',
+                'value' => 'Inactive',
               ],
             ],
           ],
@@ -366,34 +467,107 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'AccessKeyId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
           ],
         ],
       ],
     ],
-    'AccountAlias' => [
+    'AccessKeyPair' => [
       'identifiers' => [
         [
-          'name' => 'Name',
+          'name' => 'UserName',
+          'memberName' => 'UserName',
+        ],
+        [
+          'name' => 'Id',
+          'memberName' => 'AccessKeyId',
+        ],
+        [
+          'name' => 'Secret',
+          'memberName' => 'SecretAccessKey',
         ],
       ],
+      'shape' => 'AccessKey',
       'actions' => [
-        'Delete' => [
+        'Activate' => [
           'request' => [
-            'operation' => 'DeleteAccountAlias',
+            'operation' => 'UpdateAccessKey',
             'params' => [
               [
-                'target' => 'AccountAlias',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
+                'target' => 'AccessKeyId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'Status',
+                'source' => 'string',
+                'value' => 'Active',
+              ],
+            ],
+          ],
+        ],
+        'Deactivate' => [
+          'request' => [
+            'operation' => 'UpdateAccessKey',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
+                'target' => 'AccessKeyId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'Status',
+                'source' => 'string',
+                'value' => 'Inactive',
+              ],
+            ],
+          ],
+        ],
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteAccessKey',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
+                'target' => 'AccessKeyId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
             ],
           ],
@@ -431,7 +605,132 @@
         'request' => [
           'operation' => 'GetAccountSummary',
         ],
-        'path' => '$',
+        'path' => '@',
+      ],
+    ],
+    'AssumeRolePolicy' => [
+      'identifiers' => [
+        [
+          'name' => 'RoleName',
+        ],
+      ],
+      'actions' => [
+        'Update' => [
+          'request' => [
+            'operation' => 'UpdateAssumeRolePolicy',
+            'params' => [
+              [
+                'target' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'RoleName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Role' => [
+          'resource' => [
+            'type' => 'Role',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'RoleName',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'CurrentUser' => [
+      'identifiers' => [
+      ],
+      'shape' => 'User',
+      'load' => [
+        'request' => [
+          'operation' => 'GetUser',
+        ],
+        'path' => 'User',
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'data',
+                'path' => 'UserName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'hasMany' => [
+        'AccessKeys' => [
+          'request' => [
+            'operation' => 'ListAccessKeys',
+          ],
+          'resource' => [
+            'type' => 'AccessKey',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'response',
+                'path' => 'AccessKeyMetadata[].UserName',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'response',
+                'path' => 'AccessKeyMetadata[].AccessKeyId',
+              ],
+            ],
+            'path' => 'AccessKeyMetadata[]',
+          ],
+        ],
+        'MfaDevices' => [
+          'request' => [
+            'operation' => 'ListMFADevices',
+          ],
+          'resource' => [
+            'type' => 'MfaDevice',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'response',
+                'path' => 'MFADevices[].UserName',
+              ],
+              [
+                'target' => 'SerialNumber',
+                'source' => 'response',
+                'path' => 'MFADevices[].SerialNumber',
+              ],
+            ],
+            'path' => 'MFADevices[]',
+          ],
+        ],
+        'SigningCertificates' => [
+          'request' => [
+            'operation' => 'ListSigningCertificates',
+          ],
+          'resource' => [
+            'type' => 'SigningCertificate',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'response',
+                'path' => 'Certificates[].UserName',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'response',
+                'path' => 'Certificates[].CertificateId',
+              ],
+            ],
+            'path' => 'Certificates[]',
+          ],
+        ],
       ],
     ],
     'Group' => [
@@ -448,8 +747,8 @@
           'params' => [
             [
               'target' => 'GroupName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -462,8 +761,20 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'AttachPolicy' => [
+          'request' => [
+            'operation' => 'AttachGroupPolicy',
+            'params' => [
+              [
+                'target' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -474,10 +785,21 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
+          ],
+          'resource' => [
+            'type' => 'Group',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'requestParameter',
+                'path' => 'GroupName',
+              ],
+            ],
+            'path' => 'Group',
           ],
         ],
         'CreatePolicy' => [
@@ -486,8 +808,8 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -496,13 +818,13 @@
             'identifiers' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'PolicyName',
+                'source' => 'requestParameter',
+                'path' => 'PolicyName',
               ],
             ],
           ],
@@ -513,8 +835,20 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'DetachPolicy' => [
+          'request' => [
+            'operation' => 'DetachGroupPolicy',
+            'params' => [
+              [
+                'target' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -525,8 +859,8 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -537,8 +871,8 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -547,22 +881,62 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'NewGroupName',
+                'source' => 'requestParameter',
+                'path' => 'NewGroupName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Policy' => [
+          'resource' => [
+            'type' => 'GroupPolicy',
+            'identifiers' => [
+              [
+                'target' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'input',
               ],
             ],
           ],
         ],
       ],
       'hasMany' => [
+        'AttachedPolicies' => [
+          'request' => [
+            'operation' => 'ListAttachedGroupPolicies',
+            'params' => [
+              [
+                'target' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Policy',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'response',
+                'path' => 'AttachedPolicies[].PolicyArn',
+              ],
+            ],
+          ],
+        ],
         'Policies' => [
           'request' => [
             'operation' => 'ListGroupPolicies',
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -571,13 +945,13 @@
             'identifiers' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'PolicyNames[]',
+                'source' => 'response',
+                'path' => 'PolicyNames[]',
               ],
             ],
           ],
@@ -588,8 +962,8 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -598,20 +972,12 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'Users[].UserName',
+                'source' => 'response',
+                'path' => 'Users[].UserName',
               ],
             ],
             'path' => 'Users[]',
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'GroupPolicy',
-        ],
-        'identifiers' => [
-          'Name' => 'GroupName',
         ],
       ],
     ],
@@ -633,17 +999,17 @@
           'params' => [
             [
               'target' => 'GroupName',
-              'sourceType' => 'identifier',
-              'source' => 'GroupName',
+              'source' => 'identifier',
+              'name' => 'GroupName',
             ],
             [
               'target' => 'PolicyName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -652,13 +1018,13 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'GroupName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -669,13 +1035,27 @@
             'params' => [
               [
                 'target' => 'GroupName',
-                'sourceType' => 'identifier',
-                'source' => 'GroupName',
+                'source' => 'identifier',
+                'name' => 'GroupName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Group' => [
+          'resource' => [
+            'type' => 'Group',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'GroupName',
               ],
             ],
           ],
@@ -696,8 +1076,8 @@
           'params' => [
             [
               'target' => 'InstanceProfileName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -710,8 +1090,8 @@
             'params' => [
               [
                 'target' => 'InstanceProfileName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -722,8 +1102,8 @@
             'params' => [
               [
                 'target' => 'InstanceProfileName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -734,22 +1114,22 @@
             'params' => [
               [
                 'target' => 'InstanceProfileName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
         'Roles' => [
           'resource' => [
             'type' => 'Role',
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'dataMember',
-                'source' => 'Roles[].RoleName',
+                'source' => 'data',
+                'path' => 'Roles[].RoleName',
               ],
             ],
             'path' => 'Roles[]',
@@ -771,8 +1151,8 @@
           'params' => [
             [
               'target' => 'UserName',
-              'sourceType' => 'identifier',
-              'source' => 'UserName',
+              'source' => 'identifier',
+              'name' => 'UserName',
             ],
           ],
         ],
@@ -785,10 +1165,21 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
+          ],
+          'resource' => [
+            'type' => 'LoginProfile',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'response',
+                'path' => 'LoginProfile.UserName',
+              ],
+            ],
+            'path' => 'LoginProfile',
           ],
         ],
         'Delete' => [
@@ -797,8 +1188,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
           ],
@@ -809,8 +1200,22 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
           ],
@@ -830,36 +1235,36 @@
       ],
       'shape' => 'MFADevice',
       'actions' => [
-        'Deactivate' => [
-          'request' => [
-            'operation' => 'DeactivateMFADevice',
-            'params' => [
-              [
-                'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
-              ],
-              [
-                'target' => 'SerialNumber',
-                'sourceType' => 'identifier',
-                'source' => 'SerialNumber',
-              ],
-            ],
-          ],
-        ],
-        'Enable' => [
+        'Associate' => [
           'request' => [
             'operation' => 'EnableMFADevice',
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'SerialNumber',
-                'sourceType' => 'identifier',
-                'source' => 'SerialNumber',
+                'source' => 'identifier',
+                'name' => 'SerialNumber',
+              ],
+            ],
+          ],
+        ],
+        'Disassociate' => [
+          'request' => [
+            'operation' => 'DeactivateMFADevice',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
+                'target' => 'SerialNumber',
+                'source' => 'identifier',
+                'name' => 'SerialNumber',
               ],
             ],
           ],
@@ -870,13 +1275,360 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'SerialNumber',
-                'sourceType' => 'identifier',
-                'source' => 'SerialNumber',
+                'source' => 'identifier',
+                'name' => 'SerialNumber',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
+    'Policy' => [
+      'identifiers' => [
+        [
+          'name' => 'Arn',
+          'memberName' => 'PolicyArn',
+        ],
+      ],
+      'shape' => 'Policy',
+      'load' => [
+        'request' => [
+          'operation' => 'GetPolicy',
+          'params' => [
+            [
+              'target' => 'PolicyArn',
+              'source' => 'identifier',
+              'name' => 'Arn',
+            ],
+          ],
+        ],
+        'path' => 'Policy',
+      ],
+      'actions' => [
+        'AttachGroup' => [
+          'request' => [
+            'operation' => 'AttachGroupPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'AttachRole' => [
+          'request' => [
+            'operation' => 'AttachRolePolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'AttachUser' => [
+          'request' => [
+            'operation' => 'AttachUserPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'CreateVersion' => [
+          'request' => [
+            'operation' => 'CreatePolicyVersion',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'PolicyVersion',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'VersionId',
+                'source' => 'response',
+                'path' => 'PolicyVersion.VersionId',
+              ],
+            ],
+          ],
+        ],
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeletePolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'DetachGroup' => [
+          'request' => [
+            'operation' => 'DetachGroupPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'DetachRole' => [
+          'request' => [
+            'operation' => 'DetachRolePolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+        'DetachUser' => [
+          'request' => [
+            'operation' => 'DetachUserPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'DefaultVersion' => [
+          'resource' => [
+            'type' => 'PolicyVersion',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'VersionId',
+                'source' => 'data',
+                'path' => 'DefaultVersionId',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'hasMany' => [
+        'AttachedGroups' => [
+          'request' => [
+            'operation' => 'ListEntitiesForPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'EntityFilter',
+                'source' => 'string',
+                'value' => 'Group',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Group',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'response',
+                'path' => 'PolicyGroups[].GroupName',
+              ],
+            ],
+            'path' => 'PolicyGroups[]',
+          ],
+        ],
+        'AttachedRoles' => [
+          'request' => [
+            'operation' => 'ListEntitiesForPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'EntityFilter',
+                'source' => 'string',
+                'value' => 'Role',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Role',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'response',
+                'path' => 'PolicyRoles[].RoleName',
+              ],
+            ],
+            'path' => 'PolicyRoles[]',
+          ],
+        ],
+        'AttachedUsers' => [
+          'request' => [
+            'operation' => 'ListEntitiesForPolicy',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'EntityFilter',
+                'source' => 'string',
+                'value' => 'User',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'response',
+                'path' => 'PolicyUsers[].UserName',
+              ],
+            ],
+            'path' => 'PolicyRoles[]',
+          ],
+        ],
+        'Versions' => [
+          'request' => [
+            'operation' => 'ListPolicyVersions',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'PolicyVersion',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'VersionId',
+                'source' => 'response',
+                'path' => 'Versions[].VersionId',
+              ],
+            ],
+            'path' => 'Versions[]',
+          ],
+        ],
+      ],
+    ],
+    'PolicyVersion' => [
+      'identifiers' => [
+        [
+          'name' => 'Arn',
+        ],
+        [
+          'name' => 'VersionId',
+        ],
+      ],
+      'shape' => 'PolicyVersion',
+      'load' => [
+        'request' => [
+          'operation' => 'GetPolicyVersion',
+          'params' => [
+            [
+              'target' => 'PolicyArn',
+              'source' => 'identifier',
+              'name' => 'Arn',
+            ],
+            [
+              'target' => 'VersionId',
+              'source' => 'identifier',
+              'name' => 'VersionId',
+            ],
+          ],
+        ],
+        'path' => 'PolicyVersion',
+      ],
+      'actions' => [
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeletePolicyVersion',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'VersionId',
+                'source' => 'identifier',
+                'name' => 'VersionId',
+              ],
+            ],
+          ],
+        ],
+        'SetAsDefault' => [
+          'request' => [
+            'operation' => 'SetDefaultPolicyVersion',
+            'params' => [
+              [
+                'target' => 'PolicyArn',
+                'source' => 'identifier',
+                'name' => 'Arn',
+              ],
+              [
+                'target' => 'VersionId',
+                'source' => 'identifier',
+                'name' => 'VersionId',
               ],
             ],
           ],
@@ -897,48 +1649,112 @@
           'params' => [
             [
               'target' => 'RoleName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
         'path' => 'Role',
       ],
       'actions' => [
+        'AttachPolicy' => [
+          'request' => [
+            'operation' => 'AttachRolePolicy',
+            'params' => [
+              [
+                'target' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
         'Delete' => [
           'request' => [
             'operation' => 'DeleteRole',
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
         ],
-        'UpdateAssumeRolePolicy' => [
+        'DetachPolicy' => [
           'request' => [
-            'operation' => 'UpdateAssumeRolePolicy',
+            'operation' => 'DetachRolePolicy',
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'AssumeRolePolicy' => [
+          'resource' => [
+            'type' => 'AssumeRolePolicy',
+            'identifiers' => [
+              [
+                'target' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Policy' => [
+          'resource' => [
+            'type' => 'RolePolicy',
+            'identifiers' => [
+              [
+                'target' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'input',
               ],
             ],
           ],
         ],
       ],
       'hasMany' => [
+        'AttachedPolicies' => [
+          'request' => [
+            'operation' => 'ListAttachedRolePolicies',
+            'params' => [
+              [
+                'target' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Policy',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'response',
+                'path' => 'AttachedPolicies[].PolicyArn',
+              ],
+            ],
+          ],
+        ],
         'InstanceProfiles' => [
           'request' => [
             'operation' => 'ListInstanceProfilesForRole',
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -947,8 +1763,8 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'InstanceProfiles[].InstanceProfileName',
+                'source' => 'response',
+                'path' => 'InstanceProfiles[].InstanceProfileName',
               ],
             ],
             'path' => 'InstanceProfiles[]',
@@ -960,8 +1776,8 @@
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -970,24 +1786,16 @@
             'identifiers' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'PolicyNames[]',
+                'source' => 'response',
+                'path' => 'PolicyNames[]',
               ],
             ],
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'RolePolicy',
-        ],
-        'identifiers' => [
-          'Name' => 'RoleName',
         ],
       ],
     ],
@@ -1009,17 +1817,17 @@
           'params' => [
             [
               'target' => 'RoleName',
-              'sourceType' => 'identifier',
-              'source' => 'RoleName',
+              'source' => 'identifier',
+              'name' => 'RoleName',
             ],
             [
               'target' => 'PolicyName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -1028,13 +1836,13 @@
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'RoleName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1045,13 +1853,27 @@
             'params' => [
               [
                 'target' => 'RoleName',
-                'sourceType' => 'identifier',
-                'source' => 'RoleName',
+                'source' => 'identifier',
+                'name' => 'RoleName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'Role' => [
+          'resource' => [
+            'type' => 'Role',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'RoleName',
               ],
             ],
           ],
@@ -1071,12 +1893,12 @@
           'params' => [
             [
               'target' => 'SAMLProviderArn',
-              'sourceType' => 'identifier',
-              'source' => 'Arn',
+              'source' => 'identifier',
+              'name' => 'Arn',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -1085,8 +1907,8 @@
             'params' => [
               [
                 'target' => 'SAMLProviderArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -1097,8 +1919,8 @@
             'params' => [
               [
                 'target' => 'SAMLProviderArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -1118,8 +1940,8 @@
           'params' => [
             [
               'target' => 'ServerCertificateName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -1132,8 +1954,8 @@
             'params' => [
               [
                 'target' => 'ServerCertificateName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1144,8 +1966,8 @@
             'params' => [
               [
                 'target' => 'ServerCertificateName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1154,8 +1976,8 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'NewServerCertificateName',
+                'source' => 'requestParameter',
+                'path' => 'NewServerCertificateName',
               ],
             ],
           ],
@@ -1164,6 +1986,10 @@
     ],
     'SigningCertificate' => [
       'identifiers' => [
+        [
+          'name' => 'UserName',
+          'memberName' => 'UserName',
+        ],
         [
           'name' => 'Id',
           'memberName' => 'CertificateId',
@@ -1176,14 +2002,19 @@
             'operation' => 'UpdateSigningCertificate',
             'params' => [
               [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
                 'target' => 'CertificateId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Status',
-                'sourceType' => 'string',
-                'source' => 'Active',
+                'source' => 'string',
+                'value' => 'Active',
               ],
             ],
           ],
@@ -1193,14 +2024,19 @@
             'operation' => 'UpdateSigningCertificate',
             'params' => [
               [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
                 'target' => 'CertificateId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Status',
-                'sourceType' => 'string',
-                'source' => 'Inactive',
+                'source' => 'string',
+                'value' => 'Inactive',
               ],
             ],
           ],
@@ -1210,9 +2046,28 @@
             'operation' => 'DeleteSigningCertificate',
             'params' => [
               [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
+              ],
+              [
                 'target' => 'CertificateId',
-                'sourceType' => 'identifier',
-                'source' => 'Id',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
           ],
@@ -1233,8 +2088,8 @@
           'params' => [
             [
               'target' => 'UserName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -1247,38 +2102,101 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
         ],
-        'CreateAccessKey' => [
+        'AttachPolicy' => [
+          'request' => [
+            'operation' => 'AttachUserPolicy',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'Create' => [
+          'request' => [
+            'operation' => 'CreateUser',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'requestParameter',
+                'path' => 'UserName',
+              ],
+            ],
+            'path' => 'User',
+          ],
+        ],
+        'CreateAccessKeyPair' => [
           'request' => [
             'operation' => 'CreateAccessKey',
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
           'resource' => [
-            'type' => 'AccessKey',
+            'type' => 'AccessKeyPair',
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'AccessKey.AccessKeyId',
+                'source' => 'response',
+                'path' => 'AccessKey.AccessKeyId',
+              ],
+              [
+                'target' => 'Secret',
+                'source' => 'response',
+                'path' => 'AccessKey.SecretAccessKey',
               ],
             ],
             'path' => 'AccessKey',
+          ],
+        ],
+        'CreateLoginProfile' => [
+          'request' => [
+            'operation' => 'CreateLoginProfile',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'LoginProfile',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'response',
+                'path' => 'LoginProfile.UserName',
+              ],
+            ],
+            'path' => 'LoginProfile',
           ],
         ],
         'CreatePolicy' => [
@@ -1287,8 +2205,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1297,13 +2215,13 @@
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'PolicyName',
+                'source' => 'requestParameter',
+                'path' => 'PolicyName',
               ],
             ],
           ],
@@ -1314,8 +2232,20 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'DetachPolicy' => [
+          'request' => [
+            'operation' => 'DetachUserPolicy',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1326,8 +2256,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1336,13 +2266,13 @@
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'SerialNumber',
-                'sourceType' => 'requestParameter',
-                'source' => 'SerialNumber',
+                'source' => 'requestParameter',
+                'path' => 'SerialNumber',
               ],
             ],
           ],
@@ -1353,8 +2283,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1365,8 +2295,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1375,8 +2305,86 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'requestParameter',
-                'source' => 'NewUserName',
+                'source' => 'requestParameter',
+                'path' => 'NewUserName',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'AccessKey' => [
+          'resource' => [
+            'type' => 'AccessKey',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'LoginProfile' => [
+          'resource' => [
+            'type' => 'LoginProfile',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+        'MfaDevice' => [
+          'resource' => [
+            'type' => 'MfaDevice',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'SerialNumber',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'Policy' => [
+          'resource' => [
+            'type' => 'UserPolicy',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Name',
+                'source' => 'input',
+              ],
+            ],
+          ],
+        ],
+        'SigningCertificate' => [
+          'resource' => [
+            'type' => 'SigningCertificate',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'input',
               ],
             ],
           ],
@@ -1389,8 +2397,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1399,16 +2407,38 @@
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Id',
-                'sourceType' => 'responsePath',
-                'source' => 'AccessKeyMetadata[].AccessKeyId',
+                'source' => 'response',
+                'path' => 'AccessKeyMetadata[].AccessKeyId',
               ],
             ],
             'path' => 'AccessKeyMetadata[]',
+          ],
+        ],
+        'AttachedPolicies' => [
+          'request' => [
+            'operation' => 'ListAttachedUserPolicies',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'Policy',
+            'identifiers' => [
+              [
+                'target' => 'Arn',
+                'source' => 'response',
+                'path' => 'AttachedPolicies[].PolicyArn',
+              ],
+            ],
           ],
         ],
         'Groups' => [
@@ -1417,8 +2447,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1427,8 +2457,8 @@
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'Groups[].GroupName',
+                'source' => 'response',
+                'path' => 'Groups[].GroupName',
               ],
             ],
             'path' => 'Groups[]',
@@ -1440,8 +2470,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1450,13 +2480,13 @@
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'SerialNumber',
-                'sourceType' => 'responsePath',
-                'source' => 'MFADevices[].SerialNumber',
+                'source' => 'response',
+                'path' => 'MFADevices[].SerialNumber',
               ],
             ],
             'path' => 'MFADevices[]',
@@ -1468,8 +2498,8 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1478,27 +2508,44 @@
             'identifiers' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
               [
                 'target' => 'Name',
-                'sourceType' => 'responsePath',
-                'source' => 'PolicyNames[]',
+                'source' => 'response',
+                'path' => 'PolicyNames[]',
               ],
             ],
           ],
         ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'AccessKey',
-          'LoginProfile',
-          'MfaDevice',
-          'UserPolicy',
-        ],
-        'identifiers' => [
-          'Name' => 'UserName',
+        'SigningCertificates' => [
+          'request' => [
+            'operation' => 'ListSigningCertificates',
+            'params' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+          'resource' => [
+            'type' => 'SigningCertificate',
+            'identifiers' => [
+              [
+                'target' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+              [
+                'target' => 'Id',
+                'source' => 'response',
+                'path' => 'Certificates[].CertificateId',
+              ],
+            ],
+            'path' => 'Certificates[]',
+          ],
         ],
       ],
     ],
@@ -1520,17 +2567,17 @@
           'params' => [
             [
               'target' => 'UserName',
-              'sourceType' => 'identifier',
-              'source' => 'UserName',
+              'source' => 'identifier',
+              'name' => 'UserName',
             ],
             [
               'target' => 'PolicyName',
-              'sourceType' => 'identifier',
-              'source' => 'Name',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -1539,13 +2586,13 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
               ],
             ],
           ],
@@ -1556,13 +2603,27 @@
             'params' => [
               [
                 'target' => 'UserName',
-                'sourceType' => 'identifier',
-                'source' => 'UserName',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
               [
                 'target' => 'PolicyName',
-                'sourceType' => 'identifier',
-                'source' => 'Name',
+                'source' => 'identifier',
+                'name' => 'Name',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'User' => [
+          'resource' => [
+            'type' => 'User',
+            'identifiers' => [
+              [
+                'target' => 'Name',
+                'source' => 'identifier',
+                'name' => 'UserName',
               ],
             ],
           ],
@@ -1584,22 +2645,22 @@
             'params' => [
               [
                 'target' => 'SerialNumber',
-                'sourceType' => 'identifier',
-                'source' => 'SerialNumber',
+                'source' => 'identifier',
+                'name' => 'SerialNumber',
               ],
             ],
           ],
         ],
       ],
-      'belongsTo' => [
+      'has' => [
         'User' => [
           'resource' => [
             'type' => 'User',
             'identifiers' => [
               [
                 'target' => 'Name',
-                'sourceType' => 'dataMember',
-                'source' => 'User.UserName',
+                'source' => 'data',
+                'path' => 'User.UserName',
               ],
             ],
           ],

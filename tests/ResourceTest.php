@@ -100,6 +100,7 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
                  'performAction',
                  'makeCollection',
                  'waitUntil',
+                 'checkIfExists',
             ])
             ->getMock();
         $rc->expects($this->once())->method('getMetaData')->willReturn([
@@ -112,12 +113,14 @@ class ResourceTest extends \PHPUnit_Framework_TestCase
                 'b' => 'related',
                 'c' => 'collections',
                 'd' => 'waiters',
+                'e' => 'exists',
             ]
         ]);
         $rc->expects($this->once())->method('makeRelated');
         $rc->expects($this->once())->method('performAction');
         $rc->expects($this->once())->method('makeCollection');
         $rc->expects($this->once())->method('waitUntil');
+        $rc->expects($this->once())->method('checkIfExists');
 
         $resource = new Resource($rc, 'Thing', []);
         foreach ($resource->respondsTo() as $property) {

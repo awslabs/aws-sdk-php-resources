@@ -191,6 +191,8 @@ class Resource implements \IteratorAggregate, \ArrayAccess
                 return $this->client->performAction($name, $args, $this);
             case 'waiters':
                 return $this->client->waitUntil(substr($name, 9), $args, $this);
+            case 'exists':
+                return $this->client->checkIfExists($this);
             default:
                 throw new \BadMethodCallException(
                     "You cannot call {$name} on the {$this->type} resource."

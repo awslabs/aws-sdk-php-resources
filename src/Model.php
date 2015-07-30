@@ -68,6 +68,9 @@ class Model
             foreach ($items as $item) {
                 if ($key === 'waiters') {
                     $methods["waitUntil{$item}"] = $key;
+                    if ($item === 'Exists') {
+                        $methods['exists'] = 'exists';
+                    }
                 } else {
                     $methods[lcfirst($item)] = $key;
                 }

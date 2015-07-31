@@ -4,6 +4,8 @@
  * files, does some pre-processing, and places them into the src/models.
  */
 
+require __DIR__ . '/../vendor/autoload.php';
+
 if (!isset($argv[1])) {
     die('A source path was not provided in argument 1');
 }
@@ -12,19 +14,23 @@ $dir = $argv[1];
 if (is_file($dir)) {
     copyJson($dir);
 } elseif (is_dir($dir)) {
-    foreach (scandir($dir) as $file) {
-        copyJson($dir . '/' . $file);
+    $files = \Aws\recursive_dir_iterator(rtrim($dir, '/'));
+    $files = \Aws\filter($files, function ($file) {
+        return substr($file, -16) === 'resources-1.json';
+    });
+    foreach ($files as $file) {
+        copyJson($file, $dir);
     }
 } else {
     die('Invalid file/directory');
 }
 
-function copyJson($file) {
-    if (!strpos($file, 'resources.json')) {
-        return;
-    }
-    $phpFile = __DIR__ . '/../src/models/'
-        . str_replace('.json', '.php', basename($file));
+function copyJson($file, $baseDir) {
+    $phpFile = __DIR__ . '/../src/models/' . strtr($file, [
+        $baseDir => '',
+        '/resources-1.json' => '.resources.php',
+        '/' => '-',
+    ]);
     $json = json_decode(file_get_contents($file), true);
     $script = "<?php return " . var_export($json, true) . ";\n";
     // Convert "array()" to "[]"

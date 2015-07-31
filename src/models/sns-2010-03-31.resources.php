@@ -10,8 +10,8 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'PlatformApplicationArn',
+              'source' => 'response',
+              'path' => 'PlatformApplicationArn',
             ],
           ],
         ],
@@ -25,8 +25,54 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'TopicArn',
+              'source' => 'response',
+              'path' => 'TopicArn',
+            ],
+          ],
+        ],
+      ],
+    ],
+    'has' => [
+      'PlatformApplication' => [
+        'resource' => [
+          'type' => 'PlatformApplication',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'PlatformEndpoint' => [
+        'resource' => [
+          'type' => 'PlatformEndpoint',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Subscription' => [
+        'resource' => [
+          'type' => 'Subscription',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'input',
+            ],
+          ],
+        ],
+      ],
+      'Topic' => [
+        'resource' => [
+          'type' => 'Topic',
+          'identifiers' => [
+            [
+              'target' => 'Arn',
+              'source' => 'input',
             ],
           ],
         ],
@@ -42,8 +88,8 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'PlatformApplications[].PlatformApplicationArn',
+              'source' => 'response',
+              'path' => 'PlatformApplications[].PlatformApplicationArn',
             ],
           ],
         ],
@@ -56,14 +102,9 @@
           'type' => 'Subscription',
           'identifiers' => [
             [
-              'target' => 'TopicArn',
-              'sourceType' => 'responsePath',
-              'source' => 'Subscriptions[].TopicArn',
-            ],
-            [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'Subscriptions[].SubscriptionArn',
+              'source' => 'response',
+              'path' => 'Subscriptions[].SubscriptionArn',
             ],
           ],
         ],
@@ -77,8 +118,8 @@
           'identifiers' => [
             [
               'target' => 'Arn',
-              'sourceType' => 'responsePath',
-              'source' => 'Topics[].TopicArn',
+              'source' => 'response',
+              'path' => 'Topics[].TopicArn',
             ],
           ],
         ],
@@ -99,12 +140,12 @@
           'params' => [
             [
               'target' => 'PlatformApplicationArn',
-              'sourceType' => 'identifier',
-              'source' => 'Arn',
+              'source' => 'identifier',
+              'name' => 'Arn',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'CreatePlatformEndpoint' => [
@@ -113,8 +154,8 @@
             'params' => [
               [
                 'target' => 'PlatformApplicationArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -122,14 +163,9 @@
             'type' => 'PlatformEndpoint',
             'identifiers' => [
               [
-                'target' => 'PlatformApplicationArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
-              ],
-              [
                 'target' => 'Arn',
-                'sourceType' => 'responsePath',
-                'source' => 'EndpointArn',
+                'source' => 'response',
+                'path' => 'EndpointArn',
               ],
             ],
           ],
@@ -140,8 +176,8 @@
             'params' => [
               [
                 'target' => 'PlatformApplicationArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -152,8 +188,8 @@
             'params' => [
               [
                 'target' => 'PlatformApplicationArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -166,8 +202,8 @@
             'params' => [
               [
                 'target' => 'PlatformApplicationArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -176,8 +212,8 @@
             'identifiers' => [
               [
                 'target' => 'Arn',
-                'sourceType' => 'responsePath',
-                'source' => 'Endpoints[].EndpointArn',
+                'source' => 'response',
+                'path' => 'Endpoints[].EndpointArn',
               ],
             ],
           ],
@@ -197,12 +233,12 @@
           'params' => [
             [
               'target' => 'EndpointArn',
-              'sourceType' => 'identifier',
-              'source' => 'Arn',
+              'source' => 'identifier',
+              'name' => 'Arn',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -211,8 +247,8 @@
             'params' => [
               [
                 'target' => 'EndpointArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -223,8 +259,8 @@
             'params' => [
               [
                 'target' => 'TargetArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -235,8 +271,8 @@
             'params' => [
               [
                 'target' => 'EndpointArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -245,9 +281,6 @@
     ],
     'Subscription' => [
       'identifiers' => [
-        [
-          'name' => 'TopicArn',
-        ],
         [
           'name' => 'Arn',
         ],
@@ -259,12 +292,12 @@
           'params' => [
             [
               'target' => 'SubscriptionArn',
-              'sourceType' => 'identifier',
-              'source' => 'Arn',
+              'source' => 'identifier',
+              'name' => 'Arn',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'Delete' => [
@@ -273,8 +306,8 @@
             'params' => [
               [
                 'target' => 'SubscriptionArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -285,8 +318,8 @@
             'params' => [
               [
                 'target' => 'SubscriptionArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -306,12 +339,12 @@
           'params' => [
             [
               'target' => 'TopicArn',
-              'sourceType' => 'identifier',
-              'source' => 'Arn',
+              'source' => 'identifier',
+              'name' => 'Arn',
             ],
           ],
         ],
-        'path' => '$',
+        'path' => '@',
       ],
       'actions' => [
         'AddPermission' => [
@@ -320,8 +353,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -332,8 +365,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -341,14 +374,9 @@
             'type' => 'Subscription',
             'identifiers' => [
               [
-                'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
-              ],
-              [
                 'target' => 'Arn',
-                'sourceType' => 'responsePath',
-                'source' => 'SubscriptionArn',
+                'source' => 'response',
+                'path' => 'SubscriptionArn',
               ],
             ],
           ],
@@ -359,8 +387,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -371,8 +399,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -383,8 +411,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -395,8 +423,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -407,8 +435,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -416,14 +444,9 @@
             'type' => 'Subscription',
             'identifiers' => [
               [
-                'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
-              ],
-              [
                 'target' => 'Arn',
-                'sourceType' => 'responsePath',
-                'source' => 'SubscriptionArn',
+                'source' => 'response',
+                'path' => 'SubscriptionArn',
               ],
             ],
           ],
@@ -436,8 +459,8 @@
             'params' => [
               [
                 'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
+                'source' => 'identifier',
+                'name' => 'Arn',
               ],
             ],
           ],
@@ -445,25 +468,12 @@
             'type' => 'Subscription',
             'identifiers' => [
               [
-                'target' => 'TopicArn',
-                'sourceType' => 'identifier',
-                'source' => 'Arn',
-              ],
-              [
                 'target' => 'Arn',
-                'sourceType' => 'responsePath',
-                'source' => 'Subscriptions[].SubscriptionArn',
+                'source' => 'response',
+                'path' => 'Subscriptions[].SubscriptionArn',
               ],
             ],
           ],
-        ],
-      ],
-      'subResources' => [
-        'resources' => [
-          'Subscription',
-        ],
-        'identifiers' => [
-          'Arn' => 'TopicArn',
         ],
       ],
     ],

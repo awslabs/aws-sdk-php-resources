@@ -212,7 +212,7 @@
           'type' => 'Policy',
           'identifiers' => [
             [
-              'target' => 'PolicyArn',
+              'target' => 'Arn',
               'source' => 'input',
             ],
           ],
@@ -1117,6 +1117,18 @@
                 'source' => 'identifier',
                 'name' => 'Name',
               ],
+            ],
+          ],
+        ],
+      ],
+      'waiters' => [
+        'Exists' => [
+          'waiterName' => 'InstanceProfileExists',
+          'params' => [
+            [
+              'target' => 'InstanceProfileName',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],
@@ -2308,6 +2320,18 @@
                 'source' => 'requestParameter',
                 'path' => 'NewUserName',
               ],
+            ],
+          ],
+        ],
+      ],
+      'waiters' => [
+        'Exists' => [
+          'waiterName' => 'UserExists',
+          'params' => [
+            [
+              'target' => 'UserName',
+              'source' => 'identifier',
+              'name' => 'Name',
             ],
           ],
         ],

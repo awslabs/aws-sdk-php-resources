@@ -13,17 +13,17 @@ use Aws\Sdk;
  * @method Resource glacier(array $args = [])
  * @method Resource iam(array $args = [])
  * @method Resource opsworks(array $args = [])
+ * @method Resource rds(array $args = [])
  * @method Resource s3(array $args = [])
  * @method Resource sns(array $args = [])
- * @method Resource sqs(array $args = [])
  * @property \Aws\Resource\Resource $cloudformation
  * @property \Aws\Resource\Resource $dynamodb
  * @property \Aws\Resource\Resource $ec2
- * @property \Aws\Resource\Resource $s3
  * @property \Aws\Resource\Resource $glacier
  * @property \Aws\Resource\Resource $iam
  * @property \Aws\Resource\Resource $opsworks
- * @property \Aws\Resource\Resource $sqs
+ * @property \Aws\Resource\Resource $rds
+ * @property \Aws\Resource\Resource $s3
  * @property \Aws\Resource\Resource $sns
  */
 class Aws

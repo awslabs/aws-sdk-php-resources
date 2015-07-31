@@ -178,6 +178,26 @@
         'request' => [
           'operation' => 'CreateTags',
         ],
+        'resource' => [
+          'type' => 'Tag',
+          'identifiers' => [
+            [
+              'target' => 'ResourceId',
+              'source' => 'requestParameter',
+              'path' => 'Resources[]',
+            ],
+            [
+              'target' => 'Key',
+              'source' => 'requestParameter',
+              'path' => 'Tags[].Key',
+            ],
+            [
+              'target' => 'Value',
+              'source' => 'requestParameter',
+              'path' => 'Tags[].Value',
+            ],
+          ],
+        ],
       ],
       'CreateVolume' => [
         'request' => [
@@ -2133,6 +2153,68 @@
         ],
       ],
     ],
+    'Route' => [
+      'identifiers' => [
+        [
+          'name' => 'RouteTableId',
+        ],
+        [
+          'name' => 'DestinationCidrBlock',
+          'memberName' => 'DestinationCidrBlock',
+        ],
+      ],
+      'shape' => 'Route',
+      'actions' => [
+        'Delete' => [
+          'request' => [
+            'operation' => 'DeleteRoute',
+            'params' => [
+              [
+                'target' => 'RouteTableId',
+                'source' => 'identifier',
+                'name' => 'RouteTableId',
+              ],
+              [
+                'target' => 'DestinationCidrBlock',
+                'source' => 'identifier',
+                'name' => 'DestinationCidrBlock',
+              ],
+            ],
+          ],
+        ],
+        'Replace' => [
+          'request' => [
+            'operation' => 'ReplaceRoute',
+            'params' => [
+              [
+                'target' => 'RouteTableId',
+                'source' => 'identifier',
+                'name' => 'RouteTableId',
+              ],
+              [
+                'target' => 'DestinationCidrBlock',
+                'source' => 'identifier',
+                'name' => 'DestinationCidrBlock',
+              ],
+            ],
+          ],
+        ],
+      ],
+      'has' => [
+        'RouteTable' => [
+          'resource' => [
+            'type' => 'RouteTable',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'identifier',
+                'name' => 'RouteTableId',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ],
     'RouteTable' => [
       'identifiers' => [
         [
@@ -2188,6 +2270,21 @@
               ],
             ],
           ],
+          'resource' => [
+            'type' => 'Route',
+            'identifiers' => [
+              [
+                'target' => 'RouteTableId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'DestinationCidrBlock',
+                'source' => 'requestParameter',
+                'path' => 'DestinationCidrBlock',
+              ],
+            ],
+          ],
         ],
         'CreateTags' => [
           'request' => [
@@ -2235,6 +2332,37 @@
         ],
       ],
       'has' => [
+        'Associations' => [
+          'resource' => [
+            'type' => 'RouteTableAssociation',
+            'identifiers' => [
+              [
+                'target' => 'Id',
+                'source' => 'data',
+                'path' => 'Associations[].RouteTableAssociationId',
+              ],
+            ],
+            'path' => 'Associations[]',
+          ],
+        ],
+        'Routes' => [
+          'resource' => [
+            'type' => 'Route',
+            'identifiers' => [
+              [
+                'target' => 'RouteTableId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+              [
+                'target' => 'DestinationCidrBlock',
+                'source' => 'data',
+                'path' => 'Routes[].DestinationCidrBlock',
+              ],
+            ],
+            'path' => 'Routes[]',
+          ],
+        ],
         'Vpc' => [
           'resource' => [
             'type' => 'Vpc',
@@ -2245,31 +2373,6 @@
                 'path' => 'VpcId',
               ],
             ],
-          ],
-        ],
-      ],
-      'hasMany' => [
-        'Associations' => [
-          'request' => [
-            'operation' => 'DescribeRouteTables',
-            'params' => [
-              [
-                'target' => 'RouteTableIds[0]',
-                'source' => 'identifier',
-                'name' => 'Id',
-              ],
-            ],
-          ],
-          'resource' => [
-            'type' => 'RouteTableAssociation',
-            'identifiers' => [
-              [
-                'target' => 'Id',
-                'source' => 'response',
-                'path' => 'RouteTables[0].Associations[].RouteTableAssociationId',
-              ],
-            ],
-            'path' => 'RouteTables[0].Associations[]',
           ],
         ],
       ],

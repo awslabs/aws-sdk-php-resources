@@ -131,14 +131,21 @@
         'Vaults' => [
           'request' => [
             'operation' => 'ListVaults',
+            'params' => [
+              [
+                'target' => 'accountId',
+                'source' => 'identifier',
+                'name' => 'Id',
+              ],
+            ],
           ],
           'resource' => [
             'type' => 'Vault',
             'identifiers' => [
               [
                 'target' => 'AccountId',
-                'source' => 'requestParameter',
-                'path' => 'accountId',
+                'source' => 'identifier',
+                'name' => 'Id',
               ],
               [
                 'target' => 'Name',

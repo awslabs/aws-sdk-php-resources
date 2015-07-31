@@ -155,13 +155,29 @@ class ResourceClient
     public function waitUntil($name, array $args, Resource $resource)
     {
         $config = isset($args[0]) ? $args[0] : [];
-        $args = [];
+        $args = $config ? ['@waiter' => $config] : [];
 
         $waiter = $this->model->search('waiter', $resource->getType(), $name);
         $this->prepareArgs($waiter['params'], $resource, $args);
-        $this->apiClient->waitUntil($waiter['waiterName'], $args, $config);
+
+        $this->apiClient->waitUntil($waiter['waiterName'], $args);
 
         return $resource;
+    }
+
+    public function checkIfExists(Resource $resource)
+    {
+        $args = ['@waiter' => ['maxAttempts' => 1, 'delay' => 0, 'initDelay' => 0]];
+
+        if (!($waiter = $this->model->search('waiter', $resource->getType(), 'Exists'))) {
+            throw new \UnexpectedValueException('Resource does not have an Exists waiter.');
+        }
+        $this->prepareArgs($waiter['params'], $resource, $args);
+
+        return $this->apiClient->getWaiter($waiter['waiterName'], $args)
+            ->promise()
+            ->then(function () {return true;}, function () {return false;})
+            ->wait();
     }
 
     /**

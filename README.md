@@ -197,6 +197,7 @@ print_r($bucket->respondsTo());
 #     [15] => bucketVersioning
 #     [16] => bucketWebsite
 #     [17] => object
+#     [18] => exists
 # )
 ```
 
@@ -221,7 +222,6 @@ There is still a lot of work to do on the AWS Resources API for PHP. Here are
 some things we have on the list to work on soon.
 
 1. Support for batch actions on Batch and Collection objects (e.g., `$messages->delete();`)
-1. Support for waiters on resources (e.g., `$instance->waitUntil('Running');`)
 1. Support for more AWS services
 1. API documentation for the AWS Resource APIs
 

@@ -7,7 +7,6 @@ use Aws\Result;
 use Aws\Resource\Model;
 use Aws\Resource\Resource;
 use Aws\Resource\ResourceClient;
-use GuzzleHttp\Command\Event\PreparedEvent;
 
 /**
  * @covers Aws\Resource\ResourceClient
@@ -194,6 +193,22 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         $result = $rc->waitUntil('Exists', [], $resource);
 
         $this->assertSame($result, $resource);
+    }
+
+    public function testCheckingForExistenceCallsClientWaiters()
+    {
+        $client = $this->getTestClient('s3');
+        $this->setMockResults($client, [
+            new Result(['@metadata' => ['statusCode' => 200]]),
+            new Result(['@metadata' => ['statusCode' => 404]]),
+        ]);
+
+        $rc = new ResourceClient($client, $this->getModel('s3'));
+
+        $resource1 = new Resource($rc, 'Bucket', ['Name' => 'existing-bucket']);
+        $resource2 = new Resource($rc, 'Bucket', ['Name' => 'not-found-bucket']);
+        $this->assertTrue($rc->checkIfExists($resource1));
+        $this->assertFalse($rc->checkIfExists($resource2));
     }
 
     public function testPerformingAnActionCanReturnResourcesOrResults()

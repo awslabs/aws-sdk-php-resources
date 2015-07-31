@@ -14,8 +14,7 @@ class Collection implements \IteratorAggregate
         \Iterator $results,
         callable $toBatchFn
     ) {
-        $this->client = $client;
-        $this->type = $type;
+        $this->init($client, $type);
         $this->results = $results;
         $this->toBatchFn = $toBatchFn;
     }
@@ -37,14 +36,16 @@ class Collection implements \IteratorAggregate
             };
         }
 
-        return \Aws\map($items, $mapFn);
+        return new BatchIterator(\Aws\map($items, $mapFn));
     }
 
     public function __debugInfo()
     {
         return [
-            'object' => 'collection',
-            'type'   => $this->type,
+            'object'       => 'collection',
+            'type'         => $this->type,
+            'serviceName'  => $this->meta['serviceName'],
+            'batchActions' => array_keys($this->meta['batchActions']),
         ];
     }
 }

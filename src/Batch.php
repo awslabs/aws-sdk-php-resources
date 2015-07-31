@@ -11,9 +11,24 @@ class Batch implements \Countable, \Iterator
 
     public function __construct(ResourceClient $client, $type, array $resources = [])
     {
-        $this->client = $client;
-        $this->type = $type;
+        $this->init($client, $type);
         $this->resources = $resources;
+    }
+
+    /**
+     * Introspects which actions are accessible on this batch.
+     *
+     * @param string|null $name
+     *
+     * @return array|bool
+     */
+    public function respondsTo($name = null)
+    {
+        if ($name) {
+            return isset($this->meta['batchActions'][$name]);
+        } else {
+            return array_keys($this->meta['batchActions']);
+        }
     }
 
     public function current()
@@ -54,9 +69,23 @@ class Batch implements \Countable, \Iterator
     public function __debugInfo()
     {
         return [
-            'object' => 'batch',
-            'type'   => $this->type,
-            'count'  => $this->count(),
+            'object'       => 'batch',
+            'type'         => $this->type,
+            'count'        => $this->count(),
+            'serviceName'  => $this->meta['serviceName'],
+            'batchActions' => array_keys($this->meta['batchActions']),
         ];
+    }
+
+    public function __call($name, array $args)
+    {
+        $name = ucfirst($name);
+        if (!isset($this->meta['batchActions'][$name])) {
+            throw new \BadMethodCallException(
+                "You cannot call {$name} on a batch of {$this->type} resources."
+            );
+        }
+
+        return $this->client->performBatchAction($name, $args, $this);
     }
 }

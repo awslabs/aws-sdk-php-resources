@@ -18,6 +18,9 @@ trait HasTypeTrait
     /** @var string */
     private $type;
 
+    /** @var array Resource metadata (e.g., actions, relationships, etc.) */
+    private $meta;
+
     /**
      * @return AwsClientInterface
      */
@@ -32,5 +35,16 @@ trait HasTypeTrait
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param ResourceClient $client
+     * @param string         $type
+     */
+    private function init(ResourceClient $client, $type)
+    {
+        $this->client = $client;
+        $this->type = $type;
+        $this->meta = $client->getMetaData($type);
     }
 }

@@ -38,10 +38,8 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         array $identity,
         array $data = null
     ) {
-        $this->client = $client;
-        $this->type = $type;
+        $this->init($client, $type);
         $this->identity = $identity;
-        $this->meta = $this->client->getMetaData($type);
 
         if (is_array($data)) {
             $this->data = $data;

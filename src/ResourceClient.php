@@ -109,6 +109,18 @@ class ResourceClient
         }
     }
 
+    public function performBatchAction($name, array $args, Batch $batch)
+    {
+        if (isset($args[0]) && is_array($args[0])) {
+            $args = $args[0];
+        }
+
+        $action = $this->model->search('batchAction', $batch->getType(), $name);
+
+        $command = $this->prepareCommand($action['request'], $resource, $args);
+        $this->apiClient->execute($command);
+    }
+
     public function makeCollection($name, array $args, Resource $parent)
     {
         if (isset($args[0]) && is_array($args[0])) {

@@ -4,7 +4,7 @@ namespace Aws\Resource;
 
 class Batch implements \Countable, \Iterator
 {
-    use HasTypeTrait;
+    use ResourceTrait;
 
     private $resources;
     private $index = 0;
@@ -15,19 +15,12 @@ class Batch implements \Countable, \Iterator
         $this->resources = $resources;
     }
 
-    /**
-     * Introspects which actions are accessible on this batch.
-     *
-     * @param string|null $name
-     *
-     * @return array|bool
-     */
     public function respondsTo($name = null)
     {
         if ($name) {
-            return isset($this->meta['batchActions'][$name]);
+            return in_array($name, $this->meta['batchActions']);
         } else {
-            return array_keys($this->meta['batchActions']);
+            return $this->meta['batchActions'];
         }
     }
 
@@ -73,14 +66,15 @@ class Batch implements \Countable, \Iterator
             'type'         => $this->type,
             'count'        => $this->count(),
             'serviceName'  => $this->meta['serviceName'],
-            'batchActions' => array_keys($this->meta['batchActions']),
+            'batchActions' => $this->meta['batchActions'],
         ];
     }
 
     public function __call($name, array $args)
     {
         $name = ucfirst($name);
-        if (!isset($this->meta['batchActions'][$name])) {
+        if (!in_array($name, $this->meta['batchActions'])) {
+            print_r($this->meta);
             throw new \BadMethodCallException(
                 "You cannot call {$name} on a batch of {$this->type} resources."
             );

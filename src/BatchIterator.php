@@ -2,6 +2,9 @@
 
 namespace Aws\Resource;
 
+/**
+ * An iterator of batches that can also proxy batch actions.
+ */
 class BatchIterator extends \IteratorIterator
 {
     public function __construct($batches)
@@ -24,5 +27,10 @@ class BatchIterator extends \IteratorIterator
         foreach ($this as $batch) {
             $batch->__call($name, $args);
         }
+    }
+
+    public function __debugInfo()
+    {
+        return iterator_to_array($this);
     }
 }

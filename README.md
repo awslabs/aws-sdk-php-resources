@@ -23,7 +23,7 @@ resources and that encapsulate their identifying information.
 ## Installation
 
 You must install the AWS Resource APIs using [Composer] by requiring the
-[`aws/aws-sdk-php-resources` package][package] in your project.
+[`aws/aws-sdk-php-resources` package][package] (`composer require aws/aws-sdk-php-resources`) in your project.
 
 **Note:** The Resource APIs use [Version 3 of the AWS SDK for PHP][v3].
 

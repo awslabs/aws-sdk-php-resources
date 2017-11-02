@@ -12,7 +12,7 @@ namespace Aws\Resource;
  */
 class Resource implements \IteratorAggregate, \ArrayAccess
 {
-    use HasTypeTrait;
+    use ResourceTrait;
 
     /** @var array Data for the resource. */
     protected $data = [];
@@ -22,9 +22,6 @@ class Resource implements \IteratorAggregate, \ArrayAccess
 
     /** @var bool Whether the resource has been loaded. */
     private $loaded;
-
-    /** @var array Resource metadata (e.g., actions, relationships, etc.) */
-    private $meta;
 
     /**
      * @param ResourceClient $client
@@ -38,10 +35,8 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         array $identity,
         array $data = null
     ) {
-        $this->client = $client;
-        $this->type = $type;
+        $this->init($client, $type);
         $this->identity = $identity;
-        $this->meta = $this->client->getMetaData($type);
 
         if (is_array($data)) {
             $this->data = $data;
@@ -84,13 +79,6 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         return $this;
     }
 
-    /**
-     * Introspects which resources and actions are accessible on this resource.
-     *
-     * @param string|null $name
-     *
-     * @return array|bool
-     */
     public function respondsTo($name = null)
     {
         if ($name) {

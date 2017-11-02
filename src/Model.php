@@ -18,6 +18,7 @@ class Model
         'collection' => '%s.hasMany.%s',
         'load' => '%s.load',
         'waiter' => '%s.waiters.%s',
+        'batchAction' => '%s.batchActions.%s',
     ];
 
     public function __construct($service, array $data)
@@ -61,6 +62,7 @@ class Model
             . '"related": keys(has||`[]`),'
             . '"collections": keys(hasMany||`[]`),'
             . '"waiters": keys(waiters||`[]`)'
+            . '"batchActions": keys(batchActions||`[]`)'
         . '}', $data);
 
         $methods = [];
@@ -71,7 +73,7 @@ class Model
                     if ($item === 'Exists') {
                         $methods['exists'] = 'exists';
                     }
-                } else {
+                } elseif ($key !== 'batchActions') {
                     $methods[lcfirst($item)] = $key;
                 }
             }

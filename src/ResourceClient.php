@@ -109,6 +109,21 @@ class ResourceClient
         }
     }
 
+    public function performBatchAction($name, array $args, Batch $batch)
+    {
+        if (isset($args[0]) && is_array($args[0])) {
+            $args = $args[0];
+        }
+
+        $action = $this->model->search('batchAction', $batch->getType(), $name);
+
+        // Does not work with batches.
+        // $command = $this->prepareCommand($action['request'], $batch, $args);
+        throw new \RuntimeException('Batch actions are not fully implemented yet.');
+
+        return $this->apiClient->execute($command);
+    }
+
     public function makeCollection($name, array $args, Resource $parent)
     {
         if (isset($args[0]) && is_array($args[0])) {
@@ -131,7 +146,7 @@ class ResourceClient
             });
         }
 
-        // Create a new from the paginator, including a lambda that coverts
+        // Create a collection from the paginator, with a lambda that coverts
         // results to batches by using info from the resources model.
         return new Collection(
             $this,
@@ -181,9 +196,9 @@ class ResourceClient
     }
 
     /**
-     * @param array    $request
-     * @param Resource $resource
-     * @param array    $args
+     * @param array          $request
+     * @param Resource|Batch $resource
+     * @param array          $args
      *
      * @return Command
      */
@@ -200,9 +215,9 @@ class ResourceClient
     }
 
     /**
-     * @param array    $params
-     * @param Resource $resource
-     * @param array    $args
+     * @param array          $params
+     * @param Resource|Batch $resource
+     * @param array          $args
      */
     private function prepareArgs(
         array $params,
@@ -286,7 +301,7 @@ class ResourceClient
         }
 
         // Initialize the cursor at the args array root.
-        $cursor = &$args;
+        $cursor =& $args;
 
         // Create/traverse an args array structure based on the tokens.
         foreach ($tokens[0] as $token) {

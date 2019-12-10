@@ -62,6 +62,7 @@ class ResourceClientTest extends \PHPUnit_Framework_TestCase
         // Filter out stuff we don't want to compare
         unset($data['@metadata']);
         unset($params['@http']);
+        unset($params['@context']);
 
         // Verify the results are as expected
         $this->assertEquals($expected, $data);

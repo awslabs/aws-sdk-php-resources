@@ -100,6 +100,7 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new \ArrayIterator($this->getData());

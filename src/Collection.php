@@ -20,6 +20,7 @@ class Collection implements \IteratorAggregate
         $this->toBatchFn = $toBatchFn;
     }
 
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return \Aws\flatmap($this->results, $this->toBatchFn);

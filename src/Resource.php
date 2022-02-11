@@ -100,11 +100,13 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         }
     }
 
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new \ArrayIterator($this->getData());
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         $data = $this->getData();
@@ -119,11 +121,13 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         return null;
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         throw new \RuntimeException('You cannot mutate a resource\'s data.');
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         $data = $this->getData();
@@ -131,6 +135,7 @@ class Resource implements \IteratorAggregate, \ArrayAccess
         return isset($data[$offset]) || isset($this->identity[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         throw new \RuntimeException('You cannot mutate a resource\'s data.');

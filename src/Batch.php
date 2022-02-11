@@ -16,31 +16,37 @@ class Batch implements \Countable, \Iterator
         $this->resources = $resources;
     }
 
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->resources[$this->index];
     }
 
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->index;
     }
 
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return isset($this->resources[$this->index]);
     }
 
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->index++;
     }
 
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->index = 0;
     }
 
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->resources);
